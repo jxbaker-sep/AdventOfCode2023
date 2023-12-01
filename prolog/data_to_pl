@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for file in `ls *_data.txt`
+do
+  outfile=`echo $file | sed s/.txt/.pl/`
+  printf ":- set_prolog_flag(double_quotes, chars).\ndata([%s])." "$(cat $file | xargs -I{} printf "\"%s\",\n" "{}")" | sed s/,]/]/ > $outfile
+done
