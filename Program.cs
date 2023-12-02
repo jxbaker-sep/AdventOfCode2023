@@ -12,7 +12,7 @@ namespace AdventOfCode2023
     {
         static void Main(string[] args)
         {
-            var regression = args.Contains("--regression") || args.Contains("--r");
+            var regression = args.Contains("--regression") || args.Contains("-r");
 
             int? dayNumber = args.Count() == 1 && Regex.Match(args[0], @"\d+").Success ? Convert.ToInt32(args[0]) : null;
 

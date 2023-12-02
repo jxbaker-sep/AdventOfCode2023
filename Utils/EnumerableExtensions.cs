@@ -127,6 +127,13 @@ public static class EnumerableExtensions
         return new List<T> { item };
     }
 
+    public static Dictionary<TKey, List<TValue>> GroupToDictionary<T, TKey, TValue>(this IEnumerable<T> input, Func<T, TKey> keyFunc,
+        Func<T, TValue> valueFunc)
+        where TKey : notnull
+    {
+        return input.GroupBy(keyFunc).ToDictionary(it => it.Key, it => it.Select(valueFunc).ToList());
+    }
+
     public static Dictionary<TKey, List<T>> GroupToDictionary<T, TKey>(this IEnumerable<T> input, Func<T, TKey> keyFunc)
         where TKey : notnull
     {

@@ -2,11 +2,20 @@
 
 is_digit(X) => member(X, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']).
 
-number(X) --> digit(X).
-number(X) --> number(Z), digit(D), {
-  X is Z * 10 + D
+remainder(List, List, []).
+
+word(W) --> letter(W).
+word(W) --> letter(C), word(W2), {atomic_list_concat([C,W2], W)}.
+letter(C) --> [C], { 
+  member(C, "ABCDEFGHIJKLMNOPQRZTUVWXYZabcdefghijklmnopqrstuvwxyz") 
 }.
-digit(X) --> [N], { is_digit(N), atom_number(N, X) }.
+
+number(X) --> -number(Y), { atomic_list_concat(Y, Atom), atom_number(Atom, X) }.
+
+-number([X]) --> -digit(X).
+-number([D|Z]) --> -digit(D), -number(Z).
+-digit(C) --> [C], { is_digit(C) }.
+digit(X) --> -digit(C), { atom_number(C, X) }.
 
 nondigit --> [N], { \+ is_digit(N) }.
 
