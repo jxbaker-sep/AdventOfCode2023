@@ -1,7 +1,9 @@
 #!/bin/bash
 
-for file in `ls *_data.txt`
+for file in `ls *_data.txt *_sample.txt`
 do
   outfile=`echo $file | sed s/.txt/.pl/`
-  printf ":- set_prolog_flag(double_quotes, chars).\ndata([%s])." "$(cat $file | xargs -I{} printf "\"%s\",\n" "{}")" | sed s/,]/]/ > $outfile
+  term=data
+  if [[ $file =~ sample ]] ; then term=sample ; fi
+  printf ":- set_prolog_flag(double_quotes, chars).\n$term([%s])." "$(cat $file | xargs -I{} printf "\"%s\",\n" "{}")" | sed s/,]/]/ > $outfile
 done
