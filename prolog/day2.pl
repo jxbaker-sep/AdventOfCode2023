@@ -1,7 +1,7 @@
 :- set_prolog_flag(double_quotes, chars).
 :- [parse_utils].
 :- [day2_data].
-:- [utils].
+:- use_module(utils).
 
 
 s([G|D]) --> "Game ", number(G), ": ", draws(D).
