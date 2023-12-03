@@ -5,18 +5,6 @@ number_head(X, Y) :-
   X2 is X -1,
   \+ digit(X2, Y, _).
 
-get_number_head(X, Y, X) :-
-  digit(X, Y, _),
-  X2 is X-1,
-  \+ digit(X2, Y, _),
-  !.
-
-get_number_head(X, Y, X2) :-
-  digit(X, Y, _),
-  X3 is X-1,
-  digit(X3, Y, _),
-  get_number_head(X3, Y, X2).
-
 get_number(X, Y, Number) :-
   number_head(X, Y),
   get_number_acc(X, Y, 0, Number).
@@ -30,32 +18,24 @@ get_number_acc(X, Y, Accum, Result) :-
   X2 is X+1,
   get_number_acc(X2, Y, Accum2, Result).
 
-adjacent(X, Y, X2, Y2) :- X2 is X - 1, Y2 is Y - 1.
-adjacent(X, Y, X2, Y2) :- X2 is X - 1, Y2 is Y + 0.
-adjacent(X, Y, X2, Y2) :- X2 is X - 1, Y2 is Y + 1.
-adjacent(X, Y, X2, Y2) :- X2 is X + 0, Y2 is Y - 1.
-adjacent(X, Y, X2, Y2) :- X2 is X + 0, Y2 is Y + 1.
-adjacent(X, Y, X2, Y2) :- X2 is X + 1, Y2 is Y - 1.
-adjacent(X, Y, X2, Y2) :- X2 is X + 1, Y2 is Y + 0.
-adjacent(X, Y, X2, Y2) :- X2 is X + 1, Y2 is Y + 1.
+number_adjacent(X, Y, X2, Y2) :- X2 is X-1, Y2 is Y - 1.
+number_adjacent(X, Y, X2, Y2) :- X2 is X-1, Y2 is Y + 0.
+number_adjacent(X, Y, X2, Y2) :- X2 is X-1, Y2 is Y + 1.
+number_adjacent(X, Y, X2, Y2) :- -subnumber_adjacent(X, Y, X2, Y2).
+
+-subnumber_adjacent(X, Y, X, Y2) :- Y2 is Y - 1.
+-subnumber_adjacent(X, Y, X, Y2) :- Y2 is Y + 1.
+-subnumber_adjacent(X, Y, X2, Y2) :- 
+  X3 is X + 1,
+  ( digit(X3, Y, _) -> -subnumber_adjacent(X3, Y, X2, Y2) ; -tail_adjacent(X3, Y, X2, Y2)).
+-tail_adjacent(X, Y, X, Y2) :- Y2 is Y - 1.
+-tail_adjacent(X, Y, X, Y2) :- Y2 is Y + 0.
+-tail_adjacent(X, Y, X, Y2) :- Y2 is Y + 1.
+
 
 is_number_adjacent_to_symbol(X, Y) :-
-  symbol(X2, Y2),
-  abs(Y2 - Y) =< 1,
-  is_number_adjacent(X, Y, X2, Y2), !.
-
-is_number_adjacent(X, Y, _, _) :-
-  \+ digit(X, Y, _), !, false.
-
-is_number_adjacent(_, Y, _, Y2) :-
-  abs(Y - Y2) > 1, !, false.
-
-is_number_adjacent(X, Y, X2, Y2) :-
-  adjacent(X, Y, X2, Y2), !.
-
-is_number_adjacent(X, Y, X2, Y2) :-
-  X3 is X + 1,
-  is_number_adjacent(X3, Y, X2, Y2), !.
+  number_adjacent(X, Y, X2, Y2),
+  symbol(X2, Y2), !.
 
 do_part1(Result) :- 
   findall(Z, (
@@ -70,7 +50,7 @@ do_part2(Result) :-
     gear(X, Y), 
     findall(PartNumber, ( 
       number_head(X2, Y2), 
-      is_number_adjacent(X2, Y2, X, Y),
+      number_adjacent(X2, Y2, X, Y),
       get_number(X2, Y2, PartNumber)
     ), PartNumbers), 
     [N1,N2] = PartNumbers,
