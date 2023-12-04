@@ -19,7 +19,7 @@ public class Day04 : AdventOfCode<long,List<Card>>
     }).ToList();
 
     [TestCase(Input.Example, 13)]
-    [TestCase(Input.File, 32001)]
+    [TestCase(Input.File, 32_001)]
     public override long Part1(List<Card> cards)
     {
         return cards.Sum(card => {
@@ -29,7 +29,7 @@ public class Day04 : AdventOfCode<long,List<Card>>
     }
 
     [TestCase(Input.Example, 30)]
-    [TestCase(Input.File, 5037841)]
+    [TestCase(Input.File, 5_037_841)]
     public override long Part2(List<Card> cards)
     {
         return ScoreCards(cards, cards.Select(card => card.Number).ToList());
@@ -46,7 +46,9 @@ public class Day04 : AdventOfCode<long,List<Card>>
         return count;
     }
 
-    private static long ScoreCard(IReadOnlyList<Card> cards, long number)
+    private static Func<IReadOnlyList<Card>, long, long> ScoreCard {get;} = Memoise.Create<IReadOnlyList<Card>, long, long>(ScoreCardImpl);
+
+    private static long ScoreCardImpl(IReadOnlyList<Card> cards, long number)
     {
         var score = cards[(int)number - 1].Score();
         if (score == 0) return 1;
