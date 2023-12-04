@@ -39,5 +39,11 @@ namespace AdventOfCode2023.Utils
                 return (Math.Abs(a * b) + a) % b;
             }
         }
+
+        public static long Pow(long a, long b) {
+            var result = 1L;
+            for(var n = 0; n < b; ++n) result *= a;
+            return result;
+        }
     }
 }
