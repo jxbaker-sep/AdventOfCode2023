@@ -1,5 +1,5 @@
 :- [day1_data].
-:- [parse_utils].
+:- ['../parse_utils'].
 
 s(D, D) --> nondigits, digit(D), nondigits.
 s(D1, D2) --> nondigits, digit(D1), anything, digit(D2), nondigits.
@@ -20,19 +20,25 @@ wordy_digit(9) --> "nine".
 
 part1([], Acc, Acc).
 part1([Head|Tail], Acc, Result) :-
-  s(D1, D2, Head, []), !,
+  phrase(s(D1, D2), Head), !,
   Acc2 is Acc + 10 * D1 + D2,
   part1(Tail, Acc2, Result).
+
+do_part1(Data, Result) :-
+  part1(Data, 0, Result).
+
+part1_sample([
+  "1abc2",
+  "pqr3stu8vwx",
+  "a1b2c3d4e5f",
+  "treb7uchet"
+]).
 
 part2([], Acc, Acc).
 part2([Head|Tail], Acc, Result) :-
   s2(D1, D2, Head, []), !,
   Acc2 is Acc + 10 * D1 + D2,
-  atomic_list_concat(Head, Word), 
   part2(Tail, Acc2, Result).
-
-do_part1(Data, Result) :-
-  part1(Data, 0, Result).
 
 do_part2(Data, Result) :-
   part2(Data, 0, Result).
@@ -45,6 +51,12 @@ part2_sample(["two1nine",
   "zoneight234",
   "7pqrstsixteen"]).
 
-% :- initialization(main).
+:- begin_tests(day1).
+% swipl -g 'time(run_tests)' -t halt day1.pl
 
-% main :- data(Data), do_part2(Data, Result).
+test(part_1_sample, [true(Result =:= 142)]) :- part1_sample(Data), do_part1(Data, Result).
+test(part_1_data, [true(Result =:= 57346)]) :- data(Data), do_part1(Data, Result).
+test(part_2_sample, [true(Result =:= 281)]) :- part2_sample(Data), do_part2(Data, Result).
+test(part_2_data, [true(Result =:= 57345)]) :- data(Data), do_part2(Data, Result).
+
+:- end_tests(day1).
