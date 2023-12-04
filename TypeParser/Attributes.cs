@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 
 namespace TypeParser
 {
-    internal record InternalFormat(Regex? Before, Regex? After, Optional Optional, Regex? Regex, int Min, int Max, Regex? Separator);
+    internal record InternalFormat(Regex? Before, Regex? After, Optional Optional, Regex? Regex, int Min, int Max, Regex? Separator, Regex? Terminator);
 
     public enum Optional
     {
@@ -21,6 +21,7 @@ namespace TypeParser
     public class Format : Attribute
     {
         public string? After { get; init; }
+        public string? Terminator { get; init; }
 
         public string? Before { get; init; }
 
@@ -54,7 +55,8 @@ namespace TypeParser
             ConvertChoices(format.Choices) ?? Convert2(format.Regex), 
             format.Min, 
             format.Max, 
-            Convert(format.Separator));
+            Convert(format.Separator),
+            Convert(format.Terminator));
 
         private static Regex? Convert2(string? rx)
         {
@@ -85,7 +87,7 @@ namespace TypeParser
             return new Regex($"^({rx})", RegexOptions.IgnoreCase);
         }
 
-        public static InternalFormat DefaultFormat() => new(null, null, Optional.Auto, null, 0, int.MaxValue, null);
+        public static InternalFormat DefaultFormat() => new(null, null, Optional.Auto, null, 0, int.MaxValue, null, null);
 
         private static Regex? Convert(string? s)
         {

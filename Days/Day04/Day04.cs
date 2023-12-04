@@ -4,19 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TypeParser;
 
 namespace AdventOfCode2023.Days.Day04;
 
 [UsedImplicitly]
 public class Day04 : AdventOfCode<long,List<Card>>
 {
-    public override List<Card> Parse(string input) => input.Lines().Select(line => {
-        var m = Regex.Match(line, @"Card\s+(?<CardNumber>\d+): (?<Wins>(\s|\d+)+) \| (?<Haves>(\s|\d+)+)");
-        if (!m.Success) throw new ApplicationException();
-        var wins = m.StringGroup("Wins").Split(" ").Select(it => it.Trim()).Where(it => it != "").Select(it => Convert.ToInt64(it)).ToList();
-        var haves = m.StringGroup("Haves").Split(" ").Select(it => it.Trim()).Where(it => it != "").Select(it => Convert.ToInt64(it)).ToList();
-        return new Card(m.LongGroup("CardNumber"), wins, haves);
-    }).ToList();
+    public override List<Card> Parse(string input) => TypeCompiler.ParseLines<Card>(input);
 
     [TestCase(Input.Example, 13)]
     [TestCase(Input.File, 32_001)]
@@ -56,7 +51,10 @@ public class Day04 : AdventOfCode<long,List<Card>>
     }
 }
 
-public record Card(long Number, IReadOnlyList<long> WinningNumbers, IReadOnlyList<long> NumbersYouHave);
+public record Card(
+    [Format(Before="Card", After =":")]long Number, 
+    [Format(Terminator = "|")]IReadOnlyList<long> WinningNumbers, 
+    IReadOnlyList<long> NumbersYouHave);
 
 public static class CardExtensions {
     public static long Score(this Card card)

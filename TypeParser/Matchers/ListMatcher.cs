@@ -29,13 +29,26 @@ namespace TypeParser.Matchers
             instance.Add((T)m.Value!);
             input = m.Remainder;
 
+            var separator = Repeat.Separator?.ToString();
+            if (separator?.StartsWith("^") == true) {
+                separator = separator.Substring(1);
+            }
+
             while (instance.Count < Repeat.Max)
             {
                 if (string.IsNullOrWhiteSpace(input)) break;
-                var separator = Repeat.Separator?.ToString();
-                if (separator?.StartsWith("^") == true) {
-                    separator = separator.Substring(1);
+
+                if (Repeat.Terminator is Regex re)
+                {
+                    var temp = input.TrimStart();
+                    var afterMatch = re.Match(temp);
+                    if (afterMatch.Success)
+                    {
+                        input = temp[afterMatch.Length..];
+                        break;
+                    }
                 }
+
                 var m1 = Regex.Match(input, @$"^\s*{separator}\s*");
                 if (!m1.Success) break;
                 input = input[m1.Length..];
@@ -45,7 +58,7 @@ namespace TypeParser.Matchers
                 if (m == null) return null;
 
                 instance.Add((T)m.Value!);
-                input = m.Remainder;
+                input =  m.Remainder;
             }
 
             if (instance.Count < Repeat.Min)

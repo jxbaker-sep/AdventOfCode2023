@@ -68,7 +68,7 @@ namespace TypeParser.Matchers
                             format = format with {Optional = Optional.Required};
                         }
                         else{
-                            format = new(null, null, Optional.Required, null, int.MinValue, int.MaxValue, null);
+                            format = new(null, null, Optional.Required, null, int.MinValue, int.MaxValue, null, null);
                         }
                     }
                     return Compiler.Compile(it.Type, format);
