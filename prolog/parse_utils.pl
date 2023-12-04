@@ -30,3 +30,6 @@ anything --> [_], anything.
 
 greedy_anything --> [_], greedy_anything.
 greedy_anything --> [].
+
+ws --> [' '].
+ws --> [' '], ws.
