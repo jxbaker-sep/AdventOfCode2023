@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for file in `ls *_data.txt *_sample.txt`
+for file in `find . -name '*_data.txt' -o -name '*_sample.txt'`
 do
   outfile=`echo $file | sed s/.txt/.pl/`
   term=data

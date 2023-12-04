@@ -1,7 +1,7 @@
 :- module(day4_parser, [use_sample/0, use_data/0, wn/2, nyh/2]).
 :- [day4_sample].
 :- [day4_data].
-:- [parse_utils].
+:- ['../parse_utils'].
 :- dynamic wn/2, nyh/2.
 
 s(N, Wins, Haves) --> "Card", ws, number(N), ":", nlist(Wins), " |", nlist(Haves).
