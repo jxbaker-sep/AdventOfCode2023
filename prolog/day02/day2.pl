@@ -1,7 +1,7 @@
 :- set_prolog_flag(double_quotes, chars).
-:- [parse_utils].
+:- ['../parse_utils'].
 :- [day2_data].
-:- use_module(utils).
+:- use_module('../utils').
 
 
 s([G|D]) --> "Game ", number(G), ": ", draws(D).
@@ -55,3 +55,13 @@ do_part2(Data, Result) :-
   maplist(game_power, Games, GamePowers),
   maplist(product, GamePowers, Powers),
   sumlist(Powers, Result).
+
+:- begin_tests(day1).
+% swipl -g 'time(run_tests)' -t halt day1.pl
+
+test(part_1_sample, [true(Result =:= 8)]) :- sample(Data), do_part1(Data, Result).
+test(part_1_data, [true(Result =:= 2913)]) :- data(Data), do_part1(Data, Result).
+test(part_2_sample, [true(Result =:= 2286)]) :- sample(Data), do_part2(Data, Result).
+test(part_2_data, [true(Result =:= 55593)]) :- data(Data), do_part2(Data, Result).
+
+:- end_tests(day1).

@@ -57,3 +57,12 @@ do_part2(Result) :-
     GearRatio is N1 * N2
   ), Ratios),
   sumlist(Ratios, Result).
+
+:- begin_tests(day3).
+
+test(part_1_sample, [true(Result =:= 4361)]) :- use_sample, do_part1(Result).
+test(part_1_data, [true(Result =:= 543867)]) :- use_data, do_part1(Result).
+test(part_2_sample, [true(Result =:= 467835)]) :- use_sample, do_part2(Result).
+test(part_2_data, [true(Result =:= 79613331)]) :- use_data, do_part2(Result).
+
+:- end_tests(day3).
