@@ -46,3 +46,13 @@ do_part2(Result) :-
   max_card(MaxCard),
   findall(X, between(1, MaxCard, X), Start),
   win_cards(Start, 0, Result).
+
+:- begin_tests(day4).
+% swipl -g 'time(run_tests)' -t halt day4.pl
+
+test(part_1_sample, [true(Result =:= 13)]) :- abolish_all_tables, use_sample, do_part1(Result).
+test(part_1_data, [true(Result =:= 32_001)]) :- abolish_all_tables, use_data, do_part1(Result).
+test(part_2_sample, [true(Result =:= 30)]) :- abolish_all_tables, use_sample, do_part2(Result).
+test(part_2_data, [true(Result =:= 5_037_841)]) :- abolish_all_tables, use_data, do_part2(Result).
+
+:- end_tests(day4).
