@@ -49,7 +49,7 @@ inject_rows([Row|Tail], Kind) :-
 inject_rows([[]|Tail], Kind) :-
   inject_rows(Tail, Kind).
 
--retract =>
+retract =>
   retractall( seed(_) ),
   retractall( map(_,_,_,_) ),
   retractall( seed_pair(_,_) ).
@@ -95,7 +95,7 @@ add_zero_rules :-
   add_zero_rules(Sequence).
 
 use(Data) =>
-  -retract,
+  retract,
   inject_rows(Data, ''), !,
   add_zero_rules.
 
