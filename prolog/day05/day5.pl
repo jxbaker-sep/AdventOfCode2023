@@ -33,11 +33,11 @@ do_part2(Result) :-
   ), Locations),
   min_list(Locations, Result).
 
-:- begin_tests(day4).
+:- begin_tests(day5).
 
 test(part_1_sample, [true(Result =:= 35)]) :- use_sample, do_part1(Result).
 test(part_1_data, [true(Result =:= 265_018_614)]) :- use_data, do_part1(Result).
 test(part_2_sample, [true(Result =:= 46)]) :- use_sample, do_part2(Result).
 test(part_2_data, [true(Result =:= 63_179_500)]) :- use_data, do_part2(Result).
 
-:- end_tests(day4).
+:- end_tests(day5).

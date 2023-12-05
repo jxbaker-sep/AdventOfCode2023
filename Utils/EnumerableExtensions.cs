@@ -277,6 +277,20 @@ public static class EnumerableExtensions
         return (l1, l2);
     }
 
+    public static bool TryParse<T>(this string self, out T result, Format? format = null) 
+    {
+        try
+        {
+            result = self.Parse<T>(format);
+            return true;
+        }
+        catch
+        {
+            result = default!;
+            return false;
+        }
+    }
+
     public static T Parse<T>(this string self, Format? format = null) => TypeCompiler.Parse<T>(self, format);
 
     public static List<T> Parse<T>(this IEnumerable<string> self) => self.Select(s => s.Parse<T>()).ToList();
