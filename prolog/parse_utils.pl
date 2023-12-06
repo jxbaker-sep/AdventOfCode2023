@@ -33,3 +33,6 @@ greedy_anything --> [].
 
 ws --> [' '].
 ws --> [' '], ws.
+
+everything([]) --> [].
+everything([S|T]) --> [S], everything(T).

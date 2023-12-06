@@ -291,7 +291,7 @@ public static class EnumerableExtensions
         }
     }
 
-    public static T Parse<T>(this string self, Format? format = null) => TypeCompiler.Parse<T>(self, format);
+    public static T Parse<T>(this string self, Format? format = null, bool reset = false) => TypeCompiler.Parse<T>(self, format, reset);
 
     public static List<T> Parse<T>(this IEnumerable<string> self) => self.Select(s => s.Parse<T>()).ToList();
 

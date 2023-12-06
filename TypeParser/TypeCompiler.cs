@@ -55,8 +55,9 @@ namespace TypeParser
         //     return new TypeParserFacade<T>(compiler.Compile(typeof(T), format?.Format()));
         // }
 
-        public static T Parse<T>(string input, Format? format = null)
+        public static T Parse<T>(string input, Format? format = null, bool recompile = false)
         {
+            if (recompile) Memoise.Remove(typeof(T));
             var compiled = Compile<T>(format);
             var m = compiled.Match(input);
             if (m != null)

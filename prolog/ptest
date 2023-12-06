@@ -1,0 +1,10 @@
+#!/bin/bash
+
+f=`grep -l begin_tests *.pl`
+if [-z "$f"]
+then
+  echo "No prolog tests found!"
+  exit 1
+fi
+
+swipl -g 'time(run_tests)' -t halt $f
