@@ -1,4 +1,3 @@
-:- use_module(library(clpfd)).
 :- ['../utils'].
 :- [day6_data].
 :- [day6_sample].

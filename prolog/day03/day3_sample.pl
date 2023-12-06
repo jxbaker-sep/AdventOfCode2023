@@ -1,4 +1,3 @@
-:- set_prolog_flag(double_quotes, chars).
 sample(["467..114..",
 "...*......",
 "..35..633.",

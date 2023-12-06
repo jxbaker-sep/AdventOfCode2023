@@ -1,4 +1,3 @@
-:- set_prolog_flag(double_quotes, chars).
 sample(["seeds: 79 14 55 13",
 "seed-to-soil map:",
 "50 98 2",

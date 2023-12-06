@@ -5,5 +5,5 @@ do
   outfile=`echo $file | sed s/.txt/.pl/`
   term=data
   if [[ $file =~ sample ]] ; then term=sample ; fi
-  printf ":- set_prolog_flag(double_quotes, chars).\n$term([%s])." "$(cat $file | xargs -I{} printf "\"%s\",\n" "{}")" | sed s/,]/]/ > $outfile
+  printf "$term([%s])." "$(cat $file | xargs -I{} printf "\"%s\",\n" "{}")" | sed s/,]/]/ > $outfile
 done
