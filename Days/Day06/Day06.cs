@@ -44,7 +44,8 @@ public class Day06 : AdventOfCode<long,IReadOnlyList<Race>>
         var n = 0;
         for(var x = 0; x < race.Time; x++)
         {
-            n += (checked(x * (race.Time - x)) > race.Distance) ? 1 : 0;
+            var z = x * (race.Time - x);
+            n += (z > race.Distance) ? 1 : 0;
         }
         return n;
     }

@@ -3,12 +3,12 @@
 *.g.cs
 .ionide
 
-Example.txt
+#Example.txt
 Input.txt
 day*_data.pl
 day*_data.txt
-day*_sample.pl
-day*_sample.txt
+#day*_sample.pl
+#day*_sample.txt
 
 
 # Terraform
