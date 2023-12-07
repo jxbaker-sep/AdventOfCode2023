@@ -1,4 +1,4 @@
-﻿using AdventOfCode2023.Days.Day04;
+﻿using AdventOfCode2023.Day04;
 using AdventOfCode2023.Utils;
 using JetBrains.Annotations;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TypeParser;
 
-namespace AdventOfCode2023.Days.Day07;
+namespace AdventOfCode2023.Day07;
 
 [UsedImplicitly]
 public class Day07 : AdventOfCode<long,IReadOnlyList<HandValue>>
@@ -78,16 +78,16 @@ public class Day07 : AdventOfCode<long,IReadOnlyList<HandValue>>
         return v.Select(c => (long)"23456789TJQKA".IndexOf(c)).ToList();
     }
 
-    [TestCase(Input.Example, 6440)]
-    [TestCase(Input.File, 249726565)]
+    [TestCase(Input.Sample, 6440)]
+    [TestCase(Input.Data, 249726565)]
     public override long Part1(IReadOnlyList<HandValue> HandValues)
     {
         return HandValues.OrderBy(hv => hv.Hand.Strength).WithIndices()
             .Sum(hv => hv.Value.Value * (hv.Index+1));
     }
 
-    [TestCase(Input.Example, 5905)]
-    [TestCase(Input.File, 251135960)]
+    [TestCase(Input.Sample, 5905)]
+    [TestCase(Input.Data, 251135960)]
     public override long Part2(IReadOnlyList<HandValue> HandValues)
     {
         return HandValues.OrderBy(hv => hv.Hand.Strength2).WithIndices()

@@ -13,8 +13,8 @@ namespace AdventOfCode2023.Utils
 
     public static class AdventOfCodeExtensions
     {
-        public static string File(this IAdventOfCode self) => System.IO.File.ReadAllText($"Days/{self.GetType().Name}/Input.txt");
-        public static string Example(this IAdventOfCode self) => System.IO.File.ReadAllText($"Days/{self.GetType().Name}/Example.txt");
+        public static string Data(this IAdventOfCode self) => System.IO.File.ReadAllText($"../AdventOfCode2023.Data/{self.GetType().Name.ToLower()}_data.txt");
+        public static string Sample(this IAdventOfCode self) => System.IO.File.ReadAllText($"../AdventOfCode2023.Data/{self.GetType().Name.ToLower()}_sample.txt");
     }
 
     public abstract class AdventOfCode<TOut, TIn> : IAdventOfCode
@@ -27,21 +27,21 @@ namespace AdventOfCode2023.Utils
             var part1TestCases = GetType().GetMethod("Part1")!.GetCustomAttributes<TestCaseAttribute>().ToList();
             var part2TestCases = GetType().GetMethod("Part2")!.GetCustomAttributes<TestCaseAttribute>().ToList();
 
-            if (part1TestCases.Union(part2TestCases).Any(it => it.Input == Input.Example))
+            if (part1TestCases.Union(part2TestCases).Any(it => it.Input == Input.Sample))
             {
-                example.Add(Parse(this.Example()));
+                example.Add(Parse(this.Sample()));
             }
 
-            if (part1TestCases.Union(part2TestCases).Any(it => it.Input == Input.File))
+            if (part1TestCases.Union(part2TestCases).Any(it => it.Input == Input.Data))
             {
-                file.Add(Parse(this.File()));
+                file.Add(Parse(this.Data()));
             }
 
             foreach (var testCase in part1TestCases)
             {
                 var actual = Part1(testCase.Input switch{
-                    Input.Example => example[0],
-                    Input.File => file[0],
+                    Input.Sample => example[0],
+                    Input.Data => file[0],
                     Input.Raw => Parse(testCase.Raw),
                     _ => throw new ApplicationException()
                 });
@@ -54,8 +54,8 @@ namespace AdventOfCode2023.Utils
             foreach (var testCase in part2TestCases)
             {
                 var actual = Part2(testCase.Input switch{
-                    Input.Example => example[0],
-                    Input.File => file[0],
+                    Input.Sample => example[0],
+                    Input.Data => file[0],
                     Input.Raw => Parse(testCase.Raw),
                     _ => throw new ApplicationException()
                 });
@@ -98,8 +98,8 @@ namespace AdventOfCode2023.Utils
 
     public enum Input
     {
-        Example,
-        File,
+        Sample,
+        Data,
         Raw
     }
 }

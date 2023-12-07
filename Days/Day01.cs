@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace AdventOfCode2023.Days.Day01;
+namespace AdventOfCode2023.Day01;
 
 [UsedImplicitly]
 public class Day01 : AdventOfCode<long,List<string>>
@@ -17,7 +17,7 @@ public class Day01 : AdventOfCode<long,List<string>>
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet")]
-    [TestCase(Input.File, 57346)]
+    [TestCase(Input.Data, 57346)]
     public override long Part1(List<string> input)
     {
         return input.Select(Part1L).Sum();
@@ -40,7 +40,7 @@ xtwone3four
 4nineeightseven2
 zoneight234
 7pqrstsixteen")]
-    [TestCase(Input.File, 57345)]
+    [TestCase(Input.Data, 57345)]
     public override long Part2(List<string> input)
     {
         return input.Select(Part2L).Sum();

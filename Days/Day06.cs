@@ -1,4 +1,4 @@
-﻿using AdventOfCode2023.Days.Day04;
+﻿using AdventOfCode2023.Day04;
 using AdventOfCode2023.Utils;
 using JetBrains.Annotations;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TypeParser;
 
-namespace AdventOfCode2023.Days.Day05;
+namespace AdventOfCode2023.Day05;
 
 [UsedImplicitly]
 public class Day06 : AdventOfCode<long,IReadOnlyList<Race>>
@@ -25,15 +25,15 @@ public class Day06 : AdventOfCode<long,IReadOnlyList<Race>>
         return x;
     }
 
-    [TestCase(Input.Example, 288)]
-    [TestCase(Input.File, 1084752)]
+    [TestCase(Input.Sample, 288)]
+    [TestCase(Input.Data, 1084752)]
     public override long Part1(IReadOnlyList<Race> races)
     {
         return races.Take(races.Count - 1).Select(Compute).Product();
     }
 
-    [TestCase(Input.Example, 71503)]
-    [TestCase(Input.File, 28228952)]
+    [TestCase(Input.Sample, 71503)]
+    [TestCase(Input.Data, 28228952)]
     public override long Part2(IReadOnlyList<Race> races)
     {
         return Compute(races.Last());

@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TypeParser;
 
-namespace AdventOfCode2023.Days.Day02;
+namespace AdventOfCode2023.Day02;
 
 [UsedImplicitly]
 public class Day02 : AdventOfCode<long,List<Game>>
 {
     public override List<Game> Parse(string input) => TypeCompiler.ParseLines<Game>(input);
 
-    [TestCase(Input.Example, 8)]
-    [TestCase(Input.File, 2913)]
+    [TestCase(Input.Sample, 8)]
+    [TestCase(Input.Data, 2913)]
     public override long Part1(List<Game> games)
     {
         return games.Where(Possible).Select(game => game.Number).Sum();
@@ -30,8 +30,8 @@ public class Day02 : AdventOfCode<long,List<Game>>
         _ => throw new ApplicationException()
     };
 
-    [TestCase(Input.Example, 2286)]
-    [TestCase(Input.File, 55593)]
+    [TestCase(Input.Sample, 2286)]
+    [TestCase(Input.Data, 55593)]
     public override long Part2(List<Game> input)
     {
         return input.Select(MinimumCubesPower).Sum();

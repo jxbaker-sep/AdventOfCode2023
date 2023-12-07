@@ -1,4 +1,4 @@
-﻿using AdventOfCode2023.Days.Day04;
+﻿using AdventOfCode2023.Day04;
 using AdventOfCode2023.Utils;
 using JetBrains.Annotations;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TypeParser;
 
-namespace AdventOfCode2023.Days.Day05;
+namespace AdventOfCode2023.Day05;
 
 [UsedImplicitly]
 public class Day05 : AdventOfCode<long,Day05Struct>
@@ -59,15 +59,15 @@ public class Day05 : AdventOfCode<long,Day05Struct>
         return result;
     }
 
-    [TestCase(Input.Example, 35)]
-    [TestCase(Input.File, 265_018_614)]
+    [TestCase(Input.Sample, 35)]
+    [TestCase(Input.Data, 265_018_614)]
     public override long Part1(Day05Struct cards)
     {
         return cards.Seeds.SelectMany(seed => Walk(seed, 1, cards.Steps)).Min();
     }
 
-    [TestCase(Input.Example, 46)]
-    [TestCase(Input.File, 63_179_500)]
+    [TestCase(Input.Sample, 46)]
+    [TestCase(Input.Data, 63_179_500)]
     public override long Part2(Day05Struct cards)
     {
         return cards.Seeds.InGroupsOf(2).SelectMany(seed => Walk(seed[0], seed[1], cards.Steps)).Min();

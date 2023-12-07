@@ -9,7 +9,7 @@ day*_data.pl
 day*_data.txt
 #day*_sample.pl
 #day*_sample.txt
-
+data
 
 # Terraform
 **/terraform.tfstate

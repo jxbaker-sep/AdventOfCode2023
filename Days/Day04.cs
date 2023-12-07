@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TypeParser;
 
-namespace AdventOfCode2023.Days.Day04;
+namespace AdventOfCode2023.Day04;
 
 [UsedImplicitly]
 public class Day04 : AdventOfCode<long,List<Card>>
 {
     public override List<Card> Parse(string input) => TypeCompiler.ParseLines<Card>(input);
 
-    [TestCase(Input.Example, 13)]
-    [TestCase(Input.File, 32_001)]
+    [TestCase(Input.Sample, 13)]
+    [TestCase(Input.Data, 32_001)]
     public override long Part1(List<Card> cards)
     {
         return cards.Sum(card => {
@@ -23,8 +23,8 @@ public class Day04 : AdventOfCode<long,List<Card>>
         });
     }
 
-    [TestCase(Input.Example, 30)]
-    [TestCase(Input.File, 5_037_841)]
+    [TestCase(Input.Sample, 30)]
+    [TestCase(Input.Data, 5_037_841)]
     public override long Part2(List<Card> cards)
     {
         return ScoreCards(cards, cards.Select(card => card.Number).ToList());

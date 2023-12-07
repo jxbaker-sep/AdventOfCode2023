@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using AdventOfCode2023.Days.Day01;
 using AdventOfCode2023.Utils;
 using TypeParser;
 

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode2023.Days.Day03;
+namespace AdventOfCode2023.Day03;
 
 [UsedImplicitly]
 public class Day03 : AdventOfCode<long, Data>
@@ -51,8 +51,8 @@ public class Day03 : AdventOfCode<long, Data>
         return new(indexToPartNumber, positionToIndex, symbols);
     }
 
-    [TestCase(Input.Example, 4361)]
-    [TestCase(Input.File, 543867)]
+    [TestCase(Input.Sample, 4361)]
+    [TestCase(Input.Data, 543867)]
     public override long Part1(Data data)
     {
         return data.Symbols.Keys.SelectMany(p => p.DiagonalAndOrthoganalNeighbors())
@@ -63,8 +63,8 @@ public class Day03 : AdventOfCode<long, Data>
             .Sum();
     }
 
-    [TestCase(Input.Example, 467835)]
-    [TestCase(Input.File, 79613331)]
+    [TestCase(Input.Sample, 467835)]
+    [TestCase(Input.Data, 79613331)]
     public override long Part2(Data data)
     {
         return data.Symbols.Where(kv => kv.Value == '*')
