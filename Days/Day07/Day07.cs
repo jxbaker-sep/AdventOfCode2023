@@ -82,16 +82,16 @@ public class Day07 : AdventOfCode<long,IReadOnlyList<HandValue>>
     [TestCase(Input.File, 249726565)]
     public override long Part1(IReadOnlyList<HandValue> HandValues)
     {
-        return HandValues.OrderBy(hv => hv.Hand.Strength)
-            .WithIndices().Select(hvi => hvi.Value.Value *(hvi.Index+1)).Sum();
+        return HandValues.OrderBy(hv => hv.Hand.Strength).WithIndices()
+            .Sum(hv => hv.Value.Value * (hv.Index+1));
     }
 
     [TestCase(Input.Example, 5905)]
     [TestCase(Input.File, 251135960)]
     public override long Part2(IReadOnlyList<HandValue> HandValues)
     {
-        return HandValues.OrderBy(hv => hv.Hand.Strength2)
-            .WithIndices().Select(hvi => hvi.Value.Value *(hvi.Index+1)).Sum();
+        return HandValues.OrderBy(hv => hv.Hand.Strength2).WithIndices()
+            .Sum(hvi => hvi.Value.Value *(hvi.Index+1));
     }
 
 }
