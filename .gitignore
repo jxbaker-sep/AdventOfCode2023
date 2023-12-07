@@ -3,13 +3,8 @@
 *.g.cs
 .ionide
 
-#Example.txt
-Input.txt
 day*_data.pl
-day*_data.txt
-#day*_sample.pl
-#day*_sample.txt
-data
+day*_sample.pl
 
 # Terraform
 **/terraform.tfstate

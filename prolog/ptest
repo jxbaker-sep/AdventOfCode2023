@@ -1,10 +1,20 @@
 #!/bin/bash
 
-f=`grep -l begin_tests *.pl`
-if [ -z "$f" ]
+if [ "$1" == "-r" ]
 then
-  echo "No prolog tests found!"
-  exit 1
-fi
+  days=$(find . -name '*.pl' -exec grep -l begin_tests {} \; | sort)
+  for day in $days
+  do
+    swipl -g 'time(run_tests)' -t halt $day
+  done
+else
+  echo 1
+  f=`grep -l begin_tests *.pl`
+  if [ -z "$f" ]
+  then
+    echo "No prolog tests found!"
+    exit 1
+  fi
 
-swipl -g 'time(run_tests)' -t halt $f
+  swipl -g 'time(run_tests)' -t halt $f
+fi

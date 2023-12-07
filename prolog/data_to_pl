@@ -1,8 +1,12 @@
 #!/bin/bash
 
-for file in `find . -name '*_data.txt' -o -name '*_sample.txt'`
+for file in `find ../../AdventOfCode2023.Data -name '*_data.txt' -o -name '*_sample.txt'`
 do
-  outfile=`echo $file | sed s/.txt/.pl/`
+  if [ ! -d $(basename $file | cut -d_ -f1) ]
+  then
+    continue
+  fi
+  outfile=$(basename $file | cut -d_ -f1)/$(basename $file | sed s/.txt/.pl/)
   term=data
   if [[ $file =~ sample ]] ; then term=sample ; fi
   printf "$term([%s])." "$(cat $file | xargs -I{} printf "\"%s\",\n" "{}")" | sed s/,]/]/ > $outfile

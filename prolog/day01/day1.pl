@@ -1,4 +1,5 @@
-:- [day1_data].
+:- set_prolog_flag(double_quotes, chars).
+:- [day01_data].
 :- ['../parse_utils'].
 
 s(D, D) --> nondigits, digit(D), nondigits.

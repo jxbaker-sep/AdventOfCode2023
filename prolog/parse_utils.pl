@@ -1,3 +1,4 @@
+:- set_prolog_flag(double_quotes, chars).
 is_digit(X) => member(X, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']).
 
 remainder(List, List, []).

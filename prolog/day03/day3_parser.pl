@@ -1,6 +1,7 @@
 :- module(day3_parser, [use_sample/0, use_data/0, digit/3, gear/2, symbol/2]).
-:- [day3_sample].
-:- [day3_data].
+:- set_prolog_flag(double_quotes, chars).
+:- [day03_sample].
+:- [day03_data].
 :- dynamic digit/3.
 :- dynamic gear/2.
 :- dynamic symbol/2.

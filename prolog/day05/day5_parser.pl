@@ -1,6 +1,7 @@
 :- module(day5_parser, [use_sample/0, use_data/0, seed/1, map/4, seed_pair/2]).
-:- [day5_sample].
-:- [day5_data].
+:- set_prolog_flag(double_quotes, chars).
+:- [day05_sample].
+:- [day05_data].
 :- ['../parse_utils'].
 :- dynamic seed/1, map/4, seed_pair/2.
 

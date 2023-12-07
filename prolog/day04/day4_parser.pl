@@ -1,6 +1,7 @@
 :- module(day4_parser, [use_sample/0, use_data/0, wn/2, nyh/2]).
-:- [day4_sample].
-:- [day4_data].
+:- set_prolog_flag(double_quotes, chars).
+:- [day04_sample].
+:- [day04_data].
 :- ['../parse_utils'].
 :- dynamic wn/2, nyh/2.
 
