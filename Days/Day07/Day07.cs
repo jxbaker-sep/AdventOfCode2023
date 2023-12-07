@@ -53,13 +53,11 @@ public class Day07 : AdventOfCode<long,IReadOnlyList<HandValue>>
         var groups = temp.ToDictionary(it => it.Key, it => it.Value.Count);
         var zeroes = groups.GetValueOrDefault(0, 0);
 
-        foreach(var k in groups.Keys.Where(k => k != 0 ).OrderByDescending(k => groups[k]))
+        foreach(var k in groups.Keys.Where(k => k != 0 ).OrderByDescending(k => groups[k]).Take(1))
         {
             var value = groups[k];
-            var take = new[]{zeroes, 5 - value}.Min();
-            groups[k] += take;
-            zeroes -= take;
-            break;
+            groups[k] += zeroes;
+            zeroes = 0;
         }
         if (zeroes != 0 && zeroes != 5) {
             throw new ApplicationException();
