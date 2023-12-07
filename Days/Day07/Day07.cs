@@ -59,6 +59,7 @@ public class Day07 : AdventOfCode<long,IReadOnlyList<HandValue>>
             var take = new[]{zeroes, 5 - value}.Min();
             groups[k] += take;
             zeroes -= take;
+            break;
         }
         if (zeroes != 0 && zeroes != 5) {
             throw new ApplicationException();
