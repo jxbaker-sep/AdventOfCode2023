@@ -6,7 +6,7 @@ remainder(List, List, []).
 word(W) --> letter(W).
 word(W) --> letter(C), word(W2), {atomic_list_concat([C,W2], W)}.
 letter(C) --> [C], { 
-  member(C, "ABCDEFGHIJKLMNOPQRZTUVWXYZabcdefghijklmnopqrstuvwxyz") 
+  member(C, "ABCDEFGHIJKLMNOPQRSZTUVWXYZabcdefghijklmnopqrstuvwxyz") 
 }.
 
 number(X) --> -number(Y), { atomic_list_concat(Y, Atom), atom_number(Atom, X) }.
