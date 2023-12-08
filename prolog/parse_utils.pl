@@ -1,4 +1,7 @@
-:- module(parse_utils, [word/3, letter/3, number/3, digit/3, nondigit/2, nondigits/2, lazy_nondigits/2, anything/2, greedy_anything/2, ws/2, everything/3, read_datafile_to_lines/2]).
+:- module(parse_utils, [word/3, letter/3, number/3, 
+    digit/3, nondigit/2, nondigits/2, lazy_nondigits/2, 
+    anything/2, greedy_anything/2, ws/2, everything/3, optional_ws/2,
+    read_datafile_to_lines/2]).
 :- set_prolog_flag(double_quotes, chars).
 is_digit(X) => member(X, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']).
 
@@ -33,6 +36,9 @@ greedy_anything --> [].
 
 ws --> [' '].
 ws --> [' '], ws.
+
+optional_ws --> [].
+optional_ws --> ws.
 
 everything([]) --> [].
 everything([S|T]) --> [S], everything(T).
