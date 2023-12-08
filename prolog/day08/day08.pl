@@ -35,6 +35,6 @@ do_part2(Result) :-
 test(part_1_sample, [true(Result =:= 6)]) :- use_sample, do_part1(Result).
 test(part_1_data, [true(Result =:= 14681)]) :- use_data, do_part1(Result).
 test(part_2_sample, [true(Result =:= 6)]) :- use_sample2, do_part2(Result).
-test(part_2_sample, [true(Result =:= 14_321_394_058_031)]) :- use_data, do_part2(Result).
+test(part_2_data, [true(Result =:= 14_321_394_058_031)]) :- use_data, do_part2(Result).
 
 :- end_tests(day8).

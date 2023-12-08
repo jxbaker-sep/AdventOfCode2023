@@ -1,3 +1,4 @@
+:- module(parse_utils, [word/3, letter/3, number/3, digit/3, nondigit/2, nondigits/2, lazy_nondigits/2, anything/2, greedy_anything/2, ws/2, everything/3, read_datafile_to_lines/2]).
 :- set_prolog_flag(double_quotes, chars).
 is_digit(X) => member(X, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']).
 
@@ -35,3 +36,12 @@ ws --> [' '], ws.
 
 everything([]) --> [].
 everything([S|T]) --> [S], everything(T).
+
+read_file_to_lines(Spec, Lines) :-
+  read_file_to_string(Spec, String, []), 
+  split_string(String, '\n', "", Lines).
+
+read_datafile_to_lines(Spec, Lines) :- 
+  atomic_list_concat(['../../../AdventOfCode2023.Data/', Spec, '.txt'], X),
+  read_file_to_lines(X, Lines2),
+  maplist(atom_chars, Lines2, Lines).

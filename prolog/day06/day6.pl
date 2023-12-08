@@ -1,8 +1,6 @@
 :- set_prolog_flag(double_quotes, chars).
 :- use_module(library(clpfd)).
 :- ['../utils'].
-:- [day06_data].
-:- [day06_sample].
 
 solve(Time, Distance, Solution) :-
     Solution in 0..Time,

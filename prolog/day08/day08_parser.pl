@@ -1,7 +1,5 @@
-% :- module(day8_parser, [use_sample/0, use_data/0, right/2, left/2, instructions/1]).
+:- module(day8_parser, [use_sample/0, use_data/0, use_sample2/0, right/2, left/2, instructions/1]).
 :- set_prolog_flag(double_quotes, chars).
-:- [day08_sample].
-:- [day08_data].
 :- ['../parse_utils'].
 :- dynamic right/2, left/2, instructions/1.
 
@@ -25,10 +23,14 @@ retract =>
   retractall( left(_,_) ).
 
 
-use([I|Tail]) =>
+use([I,[]|Tail]) =>
   retract,
   assert_instructions(I),
   inject_rows(Tail).
+
+sample(Data) :- read_datafile_to_lines('day08_sample', Data).
+sample2(Data) :- read_datafile_to_lines('day08_sample2', Data).
+data(Data) :- read_datafile_to_lines('day08_data', Data).
 
 use_sample =>
   sample(Data),
@@ -45,13 +47,3 @@ use_data =>
 right(_,_) :- false.
 left(_,_) :- false.
 instructions(_) :- false.
-
-sample2(["LR",
-"11A = (11B, XXX)",
-"11B = (XXX, 11Z)",
-"11Z = (11B, XXX)",
-"22A = (22B, XXX)",
-"22B = (22C, 22C)",
-"22C = (22Z, 22Z)",
-"22Z = (22B, 22B)",
-"XXX = (XXX, XXX)"]).

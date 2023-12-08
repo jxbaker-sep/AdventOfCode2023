@@ -1,6 +1,5 @@
 :- set_prolog_flag(double_quotes, chars).
 :- ['../parse_utils'].
-:- [day02_data].
 :- use_module('../utils').
 
 
@@ -57,6 +56,9 @@ do_part2(Data, Result) :-
   sumlist(Powers, Result).
 
 :- begin_tests(day2).
+
+sample(Data) :- read_datafile_to_lines('day02_sample', Data).
+data(Data) :- read_datafile_to_lines('day02_data', Data).
 
 test(part_1_sample, [true(Result =:= 8)]) :- sample(Data), do_part1(Data, Result).
 test(part_1_data, [true(Result =:= 2913)]) :- data(Data), do_part1(Data, Result).

@@ -1,12 +1,9 @@
 :- module(day3_parser, [use_sample/0, use_data/0, digit/3, gear/2, symbol/2]).
 :- set_prolog_flag(double_quotes, chars).
-:- [day03_sample].
-:- [day03_data].
+:- use_module('../parse_utils', [read_datafile_to_lines/2]).
 :- dynamic digit/3.
 :- dynamic gear/2.
 :- dynamic symbol/2.
-
-is_digit(C) :- member(C, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']).
 
 inject(_, _, []) => true.
 inject(Row, Col, [Char|Tail]) =>
@@ -27,7 +24,7 @@ insert(Row, Col, *) =>
 insert(Row, Col, _) =>
   assert(( symbol(Col, Row) )).
 
--retract =>
+retract =>
   retractall( symbol(_, _) ),
   retractall( gear(_, _) ),
   retractall( digit(_, _, _) ).
@@ -38,14 +35,17 @@ inject_rows(Row, [Head|Tail]) =>
   Row2 is Row + 1,
   inject_rows(Row2, Tail).
 
+sample(Data) :- read_datafile_to_lines('day03_sample', Data).
+data(Data) :- read_datafile_to_lines('day03_data', Data).
+
 use_sample =>
-  -retract,
+  retract,
   !,
   sample(Data),
   inject_rows(0, Data).
 
 use_data =>
-  -retract,
+  retract,
   !,
   data(Data),
   inject_rows(0, Data).

@@ -1,7 +1,5 @@
 :- module(day5_parser, [use_sample/0, use_data/0, seed/1, map/4, seed_pair/2]).
 :- set_prolog_flag(double_quotes, chars).
-:- [day05_sample].
-:- [day05_data].
 :- ['../parse_utils'].
 :- dynamic seed/1, map/4, seed_pair/2.
 
@@ -94,6 +92,9 @@ add_zero_rules :-
     'humidity-to-location'
   ],
   add_zero_rules(Sequence).
+
+sample(Data) :- read_datafile_to_lines('day05_sample', Data).
+data(Data) :- read_datafile_to_lines('day05_data', Data).
 
 use(Data) =>
   retract,

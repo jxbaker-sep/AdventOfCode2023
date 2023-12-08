@@ -5,7 +5,10 @@ then
   days=$(find . -name '*.pl' -exec grep -l begin_tests {} \; | sort)
   for day in $days
   do
-    swipl -g 'time(run_tests)' -t halt $day
+    dirname=$(dirname $day)
+    pushd $dirname >/dev/null
+    swipl -g 'time(run_tests)' -t halt $(basename $day)
+    popd >/dev/null
   done
 else
   f=`grep -l begin_tests *.pl`
@@ -14,6 +17,6 @@ else
     echo "No prolog tests found!"
     exit 1
   fi
-
+  
   swipl -g 'time(run_tests)' -t halt $f
 fi

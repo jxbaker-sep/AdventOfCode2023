@@ -1,5 +1,4 @@
 :- set_prolog_flag(double_quotes, chars).
-:- [day01_data].
 :- ['../parse_utils'].
 
 s(D, D) --> nondigits, digit(D), nondigits.
@@ -54,6 +53,8 @@ part2_sample(["two1nine",
 
 :- begin_tests(day1).
 % swipl -g 'time(run_tests)' -t halt day1.pl
+
+data(Data) :- read_datafile_to_lines('day01_data', Data).
 
 test(part_1_sample, [true(Result =:= 142)]) :- part1_sample(Data), do_part1(Data, Result).
 test(part_1_data, [true(Result =:= 57346)]) :- data(Data), do_part1(Data, Result).

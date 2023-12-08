@@ -1,7 +1,5 @@
 :- module(day4_parser, [use_sample/0, use_data/0, wn/2, nyh/2]).
 :- set_prolog_flag(double_quotes, chars).
-:- [day04_sample].
-:- [day04_data].
 :- ['../parse_utils'].
 :- dynamic wn/2, nyh/2.
 
@@ -36,6 +34,9 @@ inject_rows([Head|Tail]) =>
 use(Data) =>
   -retract,
   inject_rows(Data), !.
+
+sample(Data) :- read_datafile_to_lines('day04_sample', Data).
+data(Data) :- read_datafile_to_lines('day04_data', Data).
 
 use_sample =>
   sample(Data),
