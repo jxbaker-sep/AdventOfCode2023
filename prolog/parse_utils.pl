@@ -9,12 +9,12 @@ letter(C) --> [C], {
   member(C, "ABCDEFGHIJKLMNOPQRSZTUVWXYZabcdefghijklmnopqrstuvwxyz") 
 }.
 
-number(X) --> -number(Y), { atomic_list_concat(Y, Atom), atom_number(Atom, X) }.
+number(X) --> number_(Y), { atomic_list_concat(Y, Atom), atom_number(Atom, X) }.
 
--number([X]) --> -digit(X).
--number([D|Z]) --> -digit(D), -number(Z).
--digit(C) --> [C], { is_digit(C) }.
-digit(X) --> -digit(C), { atom_number(C, X) }.
+number_([X]) --> digit_(X).
+number_([D|Z]) --> digit_(D), number_(Z).
+digit_(C) --> [C], { is_digit(C) }.
+digit(X) --> digit_(C), { atom_number(C, X) }.
 
 nondigit --> [N], { \+ is_digit(N) }.
 

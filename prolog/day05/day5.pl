@@ -10,7 +10,6 @@ subsequent('temperature-to-humidity', 'humidity-to-location').
 
 walk(SourceStart, SourceRange, Kind, Result) :-
   map(Kind, DRS, SRS, RL),
-  % writeln([SourceStart, SourceRange, Kind, DRS, SRS, RL]),
   SourceStart + SourceRange -1 >= SRS,
   SourceStart < SRS + RL,
   NewStart is max(SourceStart, SRS),
