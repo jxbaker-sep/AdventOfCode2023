@@ -8,7 +8,6 @@ then
     swipl -g 'time(run_tests)' -t halt $day
   done
 else
-  echo 1
   f=`grep -l begin_tests *.pl`
   if [ -z "$f" ]
   then
