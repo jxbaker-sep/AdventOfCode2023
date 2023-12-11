@@ -110,7 +110,7 @@ public static class EnumerableExtensions
         }
     }
 
-    public static IEnumerable<(T first, T second)> Pairs<T>(this IEnumerable<T> self)
+    public static IEnumerable<(T First, T Second)> Pairs<T>(this IEnumerable<T> self)
     {
         var l = self.ToList();
         for (var first = 0; first < l.Count - 1; first++)
@@ -318,4 +318,5 @@ public static class EnumerableExtensions
             self[key] = list2;
         }
     }
+
 }

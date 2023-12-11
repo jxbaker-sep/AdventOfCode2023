@@ -13,7 +13,11 @@ letter(C) --> [C], {
   member(C, "ABCDEFGHIJKLMNOPQRSZTUVWXYZabcdefghijklmnopqrstuvwxyz") 
 }.
 
-number(X) --> number_(Y), { atomic_list_concat(Y, Atom), atom_number(Atom, X) }.
+number(X) --> optional_sign(Sign), number_(Y), { atomic_list_concat(Y, Atom), atom_number(Atom, Z),
+  X #= Z * Sign }.
+
+optional_sign(1) --> [].
+optional_sign(-1) --> ['-'].
 
 number_([X]) --> digit_(X).
 number_([D|Z]) --> digit_(D), number_(Z).

@@ -15,6 +15,7 @@ namespace AdventOfCode2023.Utils
     {
         public static string Data(this IAdventOfCode self) => System.IO.File.ReadAllText($"../AdventOfCode2023.Data/{self.GetType().Name.ToLower()}_data.txt");
         public static string Sample(this IAdventOfCode self) => System.IO.File.ReadAllText($"../AdventOfCode2023.Data/{self.GetType().Name.ToLower()}_sample.txt");
+        public static string Sample2(this IAdventOfCode self) => System.IO.File.ReadAllText($"../AdventOfCode2023.Data/{self.GetType().Name.ToLower()}_sample2.txt");
     }
 
     public abstract class AdventOfCode<TOut, TIn> : IAdventOfCode
@@ -22,6 +23,7 @@ namespace AdventOfCode2023.Utils
         public void Run()
         {
             var example = new List<TIn>();
+            var sample2 = new List<TIn>();
             var file = new List<TIn>();
 
             var part1TestCases = GetType().GetMethod("Part1")!.GetCustomAttributes<TestCaseAttribute>().ToList();
@@ -32,6 +34,12 @@ namespace AdventOfCode2023.Utils
                 example.Add(Parse(this.Sample()));
             }
 
+            if (part1TestCases.Union(part2TestCases).Any(it => it.Input == Input.Sample2))
+            {
+                sample2.Add(Parse(this.Sample2()));
+            }
+
+
             if (part1TestCases.Union(part2TestCases).Any(it => it.Input == Input.Data))
             {
                 file.Add(Parse(this.Data()));
@@ -39,8 +47,10 @@ namespace AdventOfCode2023.Utils
 
             foreach (var testCase in part1TestCases)
             {
+                TestCase = testCase;
                 var actual = Part1(testCase.Input switch{
                     Input.Sample => example[0],
+                    Input.Sample2 => sample2[0],
                     Input.Data => file[0],
                     Input.Raw => Parse(testCase.Raw),
                     _ => throw new ApplicationException()
@@ -53,8 +63,10 @@ namespace AdventOfCode2023.Utils
 
             foreach (var testCase in part2TestCases)
             {
+                TestCase = testCase;
                 var actual = Part2(testCase.Input switch{
                     Input.Sample => example[0],
+                    Input.Sample2 => sample2[0],
                     Input.Data => file[0],
                     Input.Raw => Parse(testCase.Raw),
                     _ => throw new ApplicationException()
@@ -80,6 +92,8 @@ namespace AdventOfCode2023.Utils
 
         public abstract TOut Part1(TIn input);
         public abstract TOut Part2(TIn input);
+
+        public TestCaseAttribute TestCase { get; private set; } = new TestCaseAttribute(Input.Sample, 0);
     }
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
@@ -88,6 +102,7 @@ namespace AdventOfCode2023.Utils
         public Input Input { get; }
         public object Expected { get; }
         public string Raw {get; set;} = "";
+        public long Arg0 {get;set;} = 0;
 
         public TestCaseAttribute(Input input, object expected)
         {
@@ -99,6 +114,7 @@ namespace AdventOfCode2023.Utils
     public enum Input
     {
         Sample,
+        Sample2,
         Data,
         Raw
     }
