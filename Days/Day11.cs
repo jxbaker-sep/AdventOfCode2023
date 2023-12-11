@@ -19,6 +19,7 @@ public class Day11 : AdventOfCode<long, Galaxies>
                    .Select(it => new Position(row, it.Index)))
             .ToHashSet(); 
     }
+
     [TestCase(Input.Sample, 374, Arg0 = 2)]
     [TestCase(Input.Data, 9522407, Arg0 = 2)]
     [TestCase(Input.Sample, 1030, Arg0 = 10)]
@@ -48,11 +49,8 @@ public class Day11 : AdventOfCode<long, Galaxies>
            .Count(it => doubledCols.Contains(it));
         var extraY = Enumerable.Range(ymin, ymax - ymin + 1)
            .Count(it => doubledRows.Contains(it));
-        // Console.WriteLine($"{a} - {b} = {m} + {extraX} + {extraY} = {m + extraX + extraY}");
-        // if (a.Y == 2 && b.Y == 6)
-        //     Console.Write("");
         var z = ((long)extraX + (long)extraY);
-        return m - z + z * expansionFactor;
+        return m + z * (expansionFactor - 1);
     }
 
     private IReadOnlySet<long> DetectDoubledRows(Galaxies data)
