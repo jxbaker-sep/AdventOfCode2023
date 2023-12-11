@@ -110,6 +110,21 @@ public static class EnumerableExtensions
         }
     }
 
+    public static IEnumerable<(T,T)> Windows2<T>(this IEnumerable<T> self)
+    {
+        var queue = new Queue<T>();
+        foreach (var item in self)
+        {
+            queue.Enqueue(item);
+            if (queue.Count == 2)
+            {
+                var l = queue.ToList();
+                yield return (l[0], l[1]);
+                queue.Dequeue();
+            }
+        }
+    }
+
     public static IEnumerable<(T First, T Second)> Pairs<T>(this IEnumerable<T> self)
     {
         var l = self.ToList();

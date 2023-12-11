@@ -3,9 +3,6 @@ using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.ConstrainedExecution;
-using TypeParser;
 
 namespace AdventOfCode2023.Day10;
 
@@ -65,7 +62,6 @@ public class Day10 : AdventOfCode<long, Day10Data>
     public const char SW = '7';
     public const char SE = 'F';
     public const char Ground = '.';
-    public const char Closed = ' ';
     public const char Start = 'S';
 
 
@@ -73,23 +69,21 @@ public class Day10 : AdventOfCode<long, Day10Data>
     [TestCase(Input.Data, 7012)]
     public override long Part1(Day10Data data)
     {
-        var count = CountDistances(data.Start, data.Pipes);
-        return count.Values.Max();
+        var temp = FindLoop(data.Start, data.Pipes);
+        return temp.Count / 2;
     }
 
-    private IReadOnlyDictionary<Position, long> CountDistances(Position start, Pipes pipes)
+    public IReadOnlyList<Position> FindLoop(Position start, Pipes pipes)
     {
-        var result = new Dictionary<Position, long>{{start, 0}};
-        var open = new []{(position: start, distance: 0)}.ToQueue();
-        while (open.TryDequeue(out var current))
+        var result = new List<Position>{start};
+        var dom = VectorsOut(pipes[start]).First();
+        var current = start + dom;
+        while (current != start)
         {
-            foreach(var next in Adjacents(current.position, pipes[current.position]))
-            {
-                if (!pipes.ContainsKey(next)) throw new ApplicationException();
-                if (result.ContainsKey(next)) continue;
-                result[next] = current.distance + 1;
-                open.Enqueue((next, current.distance + 1));
-            }
+            result.Add(current);
+            var vo = VectorsOut(pipes[current]);
+            dom = new[]{dom, dom.RotateLeft(), dom.RotateRight()}.First(it => vo.Contains(it));
+            current += dom;
         }
         return result;
     }
@@ -106,86 +100,20 @@ public class Day10 : AdventOfCode<long, Day10Data>
             yield return Vector.West;
     }
 
-    private IEnumerable<Position> Adjacents(Position p, char pipe)
-    {
-        foreach(var v in VectorsOut(pipe)) yield return p + v;
-    }
-
     [TestCase(Input.Sample2, 10)]
     [TestCase(Input.Data, 395)]
     public override long Part2(Day10Data data)
     {
-        var loop = CountDistances(data.Start, data.Pipes).Keys.ToDictionary(it => it, it => data.Pipes[it]);
-        return FindOpens(loop).Count(kv => kv.Value == Closed);
-        
+        var x = FindLoop(data.Start, data.Pipes);
+        var area = AreaOfPolygon(x);
+        return area - x.Count / 2  + 1;
     }
 
-    public Pipes FindOpens(Pipes loop)
+    public long AreaOfPolygon(IReadOnlyList<Position> poly)
     {
-        var map = GenerateGrounds(loop);
-        var upperLeft = loop.Keys.OrderBy(k => k.Y).ThenBy(k => k.X).First();
-        if (loop[upperLeft] != SE) throw new ApplicationException();
-        Paint(map, upperLeft + Vector.East, upperLeft, Vector.East);
-        FloodFill(map);
-        return map;
-    }
-
-    private void FloodFill(Dictionary<Position, char> map)
-    {
-        var open = map.Where(it => it.Value == Closed).Select(it => it.Key).ToQueue();
-        while (open.TryDequeue(out var p))
-        {
-            foreach(var adjacent in p.OrthoganalNeighbors())
-            {
-                if (map.GetValueOrDefault(adjacent) == Ground)
-                {
-                    open.Enqueue(adjacent);
-                    map[adjacent] = Closed;
-                }
-            }
-        }
-    }
-
-    public void Paint(Dictionary<Position, char> map, Position current, Position terminal, Vector dom)
-    {
-        while (current != terminal)
-        {
-            var brush = dom.RotateRight();
-            if (map[current + brush] == Ground)
-            {
-                map[current + brush] = Closed;
-            }
-            var vo = VectorsOut(map[current]).ToList();
-            if (vo.Contains(dom))
-            {
-                // dom remains the same
-            }
-            else if (dom == Vector.East || dom == Vector.West)
-            {
-                if (vo.Contains(Vector.North)) dom = Vector.North;
-                else if (vo.Contains(Vector.South)) dom = Vector.South;
-                else throw new ApplicationException();
-            }
-            else if (dom == Vector.North || dom == Vector.South)
-            {
-                if (vo.Contains(Vector.East)) dom = Vector.East;
-                else if (vo.Contains(Vector.West)) dom = Vector.West;
-                else throw new ApplicationException();
-            }
-            else throw new ApplicationException();
-            var newBrush = dom.RotateRight();
-            if (newBrush != brush)
-            {
-                var x = current + newBrush;
-                if (map[x] == Ground) map[x] = Closed;
-            }
-            current += dom;
-        }
-    }
-
-    private Dictionary<Position, char> GenerateGrounds(Pipes loop)
-    {
-        return loop.Grid().ToDictionary(it => it, p => loop.ContainsKey(p) ? loop[p] : Ground);
+        return poly.Windows2().Append((poly.Last(), poly.First()))
+            .Aggregate(0L, (accum, it) => accum + it.Item1.X * it.Item2.Y - it.Item1.Y * it.Item2.X)
+            / 2;
     }
 }
 

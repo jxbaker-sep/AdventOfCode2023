@@ -49,7 +49,7 @@ public class Day11 : AdventOfCode<long, Galaxies>
            .Count(it => doubledCols.Contains(it));
         var extraY = Enumerable.Range(ymin, ymax - ymin + 1)
            .Count(it => doubledRows.Contains(it));
-        var z = ((long)extraX + (long)extraY);
+        var z = (long)extraX + (long)extraY;
         return m + z * (expansionFactor - 1);
     }
 
