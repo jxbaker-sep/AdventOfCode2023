@@ -55,18 +55,15 @@ public class Day11 : AdventOfCode<long, Galaxies>
 
     private IReadOnlySet<long> DetectDoubledRows(Galaxies data)
     {
+        
         var rows = data.Select(it => it.Y).ToHashSet();
-        var min = (int)rows.Min();
-        var max = (int)rows.Max();
-        return Enumerable.Range(min, max - min + 1).Select(it=>(long)it).Where(y => !rows.Contains(y)).ToHashSet();
+        return data.Rows().Where(y => !rows.Contains(y)).ToHashSet();
     }
 
     private IReadOnlySet<long> DetectDoubledCols(Galaxies data)
     {
         var cols = data.Select(it => it.X).ToHashSet();
-        var min = (int)cols.Min();
-        var max = (int)cols.Max();
-        return Enumerable.Range(min, max - min + 1).Select(it=>(long)it).Where(x => !cols.Contains(x)).ToHashSet();
+        return data.Cols().Where(x => !cols.Contains(x)).ToHashSet();
     }
 }
 

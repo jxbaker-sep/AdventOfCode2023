@@ -65,7 +65,7 @@ public class Day10 : AdventOfCode<long, Day10Data>
     public const char SW = '7';
     public const char SE = 'F';
     public const char Ground = '.';
-    public const char Open = ' ';
+    public const char Closed = ' ';
     public const char Start = 'S';
 
 
@@ -116,7 +116,7 @@ public class Day10 : AdventOfCode<long, Day10Data>
     public override long Part2(Day10Data data)
     {
         var loop = CountDistances(data.Start, data.Pipes).Keys.ToDictionary(it => it, it => data.Pipes[it]);
-        return FindOpens(loop).Count(kv => kv.Value == Ground);
+        return FindOpens(loop).Count(kv => kv.Value == Closed);
         
     }
 
@@ -125,10 +125,6 @@ public class Day10 : AdventOfCode<long, Day10Data>
         var map = GenerateGrounds(loop);
         var upperLeft = loop.Keys.OrderBy(k => k.Y).ThenBy(k => k.X).First();
         if (loop[upperLeft] != SE) throw new ApplicationException();
-        map[upperLeft + Vector.West] = Open;
-        map[upperLeft + Vector.West + Vector.North] = Open;
-        map[upperLeft + Vector.North] = Open;
-        var brush = Vector.North;
         Paint(map, upperLeft + Vector.East, upperLeft, Vector.East);
         FloodFill(map);
         return map;
@@ -136,7 +132,7 @@ public class Day10 : AdventOfCode<long, Day10Data>
 
     private void FloodFill(Dictionary<Position, char> map)
     {
-        var open = map.Where(it => it.Value == Open).Select(it => it.Key).ToQueue();
+        var open = map.Where(it => it.Value == Closed).Select(it => it.Key).ToQueue();
         while (open.TryDequeue(out var p))
         {
             foreach(var adjacent in p.OrthoganalNeighbors())
@@ -144,7 +140,7 @@ public class Day10 : AdventOfCode<long, Day10Data>
                 if (map.GetValueOrDefault(adjacent) == Ground)
                 {
                     open.Enqueue(adjacent);
-                    map[adjacent] = Open;
+                    map[adjacent] = Closed;
                 }
             }
         }
@@ -154,10 +150,10 @@ public class Day10 : AdventOfCode<long, Day10Data>
     {
         while (current != terminal)
         {
-            var brush = dom.RotateLeft();
+            var brush = dom.RotateRight();
             if (map[current + brush] == Ground)
             {
-                map[current + brush] = Open;
+                map[current + brush] = Closed;
             }
             var vo = VectorsOut(map[current]).ToList();
             if (vo.Contains(dom))
@@ -177,35 +173,19 @@ public class Day10 : AdventOfCode<long, Day10Data>
                 else throw new ApplicationException();
             }
             else throw new ApplicationException();
-            var newBrush = dom.RotateLeft();
+            var newBrush = dom.RotateRight();
             if (newBrush != brush)
             {
                 var x = current + newBrush;
-                if (map[x] == Ground) map[x] = Open;
+                if (map[x] == Ground) map[x] = Closed;
             }
-            current = current + dom;
+            current += dom;
         }
     }
 
     private Dictionary<Position, char> GenerateGrounds(Pipes loop)
     {
-        var minx = (int)loop.Keys.Select(it => it.X).Min() - 1;
-        var maxx = (int)loop.Keys.Select(it => it.X).Max() + 1;
-        var miny = (int)loop.Keys.Select(it => it.Y).Min() - 1;
-        var maxy = (int)loop.Keys.Select(it => it.Y).Max() + 1;
-        var result = new Dictionary<Position, char>();
-        foreach(var row in Enumerable.Range(miny, maxy - miny + 1))
-        {
-            foreach(var col in Enumerable.Range(minx, maxx - minx + 1))
-            {
-                var p = new Position(row, col);
-                if (col == minx || col == maxx || row == miny || row == maxy)
-                    result[p] = Open;
-                else
-                    result[p] = loop.ContainsKey(p) ? loop[p] : Ground;
-            }
-        }
-        return result;
+        return loop.Grid().ToDictionary(it => it, p => loop.ContainsKey(p) ? loop[p] : Ground);
     }
 }
 

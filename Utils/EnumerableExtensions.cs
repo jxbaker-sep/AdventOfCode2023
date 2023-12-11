@@ -319,4 +319,29 @@ public static class EnumerableExtensions
         }
     }
 
+    public static IEnumerable<long> Rows<T>(this IReadOnlyDictionary<Position, T> self) => self.Keys.Rows();
+
+    public static IEnumerable<long> Cols<T>(this IReadOnlyDictionary<Position, T> self) => self.Keys.Cols();
+
+    public static IEnumerable<Position> Grid<T>(this IReadOnlyDictionary<Position, T> self) => self.Keys.Grid();
+
+    public static IEnumerable<long> Rows(this IEnumerable<Position> self)
+    {
+        var min = self.Min(it => it.Y);
+        var max = self.Max(it => it.Y);
+        return Helper.Between(min, max);
+    }
+
+    public static IEnumerable<long> Cols(this IEnumerable<Position> self)
+    {
+        var min = self.Min(it => it.X);
+        var max = self.Max(it => it.X);
+        return Helper.Between(min, max);
+    }
+
+    public static IEnumerable<Position> Grid(this IEnumerable<Position> self)
+    {
+        return self.Rows().SelectMany(y => self.Cols().Select(x => new Position(y, x)));
+    }
+
 }
