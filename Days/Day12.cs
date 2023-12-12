@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace AdventOfCode2023.Day12;
 
-public record Day12Record(string Template, List<long> Runs);
+public record Day12Record(string Template, List<int> Runs);
 
 [UsedImplicitly]
 public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
@@ -16,7 +16,7 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
     public override IReadOnlyList<Day12Record> Parse(string input) =>
       input.Lines().Select(line => {
         var x = line.Split(" ");
-        return new Day12Record(x[0], x[1].Split(",").Select(y => Convert.ToInt64(y)).ToList());
+        return new Day12Record(x[0], x[1].Split(",").Select(y => Convert.ToInt32(y)).ToList());
       }).ToList();
     
     [TestCase(Input.Sample, 21)]
@@ -38,53 +38,47 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
       });
     }
 
-    public Dictionary<(string, string), long> Memoise = new Dictionary<(string, string), long>();
-    public long CountMatches(string template, List<long> runs)
+    public Dictionary<(string, string), long> MyMemoise2 = new();
+
+    public long CountMatches(string template, List<int> runs)
     {
       var key = (template, runs.Select(it => $"{it}").Join(","));
-      if (Memoise.TryGetValue(key, out var value)) return value;
+      if (MyMemoise2.TryGetValue(key, out var value)) return value;
       var x = CountMatchesImpl(template, runs);
-      Memoise[key] = x;
+      MyMemoise2[key] = x;
       return x;
     }
 
-    public long CountMatchesImpl(string template, List<long> runs)
+    public long CountMatchesImpl(string template, List<int> runs)
     {
-      var myPattern = Enumerable.Repeat('#', (int)runs[0]).Join();
-      var subsequentRuns = runs.Skip(1).ToList();
+      if (template == "" && runs.Count == 0) return 1;
+
+      if (template == "") return 0;
+
+      if (template[0] == '.') return CountMatches(template[1..], runs);
+
+      if (template[0] == '?') return CountMatches("." + template[1..], runs) + CountMatches("#" + template[1..], runs);
+
+      // We know it's a # here.
+      if (runs.Count == 0) return 0;
+
       var isLast = runs.Count == 1;
-      if (!isLast) myPattern += '.';
-      var minNext = isLast ? 0 : subsequentRuns.Sum() + subsequentRuns.Count - 1;
-      var available = template.Length - minNext;
-      var count = 0L;
-      for(var spaces = 0; spaces + myPattern.Length <= available; spaces++)
-      {
-        var prefix = Enumerable.Repeat('.', spaces).Join();
-        if (Matches(template, prefix + myPattern))
-        {
-          var remainder = template[(prefix+myPattern).Length..].SkipWhile(c => c == '.').Join();
-          if (isLast)
-          {
-            if (Matches(remainder, Enumerable.Repeat('.', remainder.Length).Join()))
-              count += 1;
-            continue;
-          }
+      
+      if (template.Length < runs[0] + (isLast ? 0 : 1)) return 0;
 
-          count += CountMatches(remainder, subsequentRuns);
-        }
+      if (template.Take(runs[0]).TakeWhile(MatchesHash).Count() == runs[0]) 
+      {
+        if (isLast)
+          return CountMatches(template[runs[0]..], runs.Skip(1).ToList());
+        else if ( MatchesDot(template[runs[0]]))
+          return CountMatches(template[(runs[0] + 1)..], runs.Skip(1).ToList());
       }
-      return count;
+
+      return 0;
     }
 
-    public bool Matches(string template, string pattern)
-    {
-      foreach(var (a,b) in template.Take(pattern.Length).Zip(pattern))
-      {
-        if (a == '?') continue;
-        if (a != b) return false;
-      }
-      return true;
-    }
+    public static bool MatchesDot(char c) => c == '.' || c == '?';
+    public static bool MatchesHash(char c) => c == '#' || c == '?';
 }
 
 
