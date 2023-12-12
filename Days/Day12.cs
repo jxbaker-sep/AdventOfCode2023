@@ -50,11 +50,11 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
 
     public long CountMatchesImpl(string template, List<long> runs)
     {
-      var t = runs[0];
-      var myPattern = Enumerable.Repeat('#', (int)t).Join();
+      var myPattern = Enumerable.Repeat('#', (int)runs[0]).Join();
+      var subsequentRuns = runs.Skip(1).ToList();
       var isLast = runs.Count == 1;
       if (!isLast) myPattern += '.';
-      var minNext = isLast ? 0 : runs.Skip(1).Sum() + runs.Skip(1).Count() - 1;
+      var minNext = isLast ? 0 : subsequentRuns.Sum() + subsequentRuns.Count - 1;
       var available = template.Length - minNext;
       var count = 0L;
       for(var spaces = 0; spaces + myPattern.Length <= available; spaces++)
@@ -70,7 +70,7 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
             continue;
           }
 
-          count += CountMatches(remainder, runs.Skip(1).ToList());
+          count += CountMatches(remainder, subsequentRuns);
         }
       }
       return count;
