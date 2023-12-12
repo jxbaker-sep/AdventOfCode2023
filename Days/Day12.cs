@@ -38,14 +38,14 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
       });
     }
 
-    public Dictionary<(string, string), long> MyMemoise2 = new();
+    public Dictionary<(string, string), long> MyMemoise = new();
 
     public long CountMatches(string template, List<int> runs)
     {
       var key = (template, runs.Select(it => $"{it}").Join(","));
-      if (MyMemoise2.TryGetValue(key, out var value)) return value;
+      if (MyMemoise.TryGetValue(key, out var value)) return value;
       var x = CountMatchesImpl(template, runs);
-      MyMemoise2[key] = x;
+      MyMemoise[key] = x;
       return x;
     }
 
