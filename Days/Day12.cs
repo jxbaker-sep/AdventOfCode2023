@@ -27,7 +27,7 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
     }
 
     [TestCase(Input.Sample, 525152)]
-    [TestCase(Input.Data, 0)]
+    [TestCase(Input.Data, 23903579139437)]
     public override long Part2(IReadOnlyList<Day12Record> data)
     {
       return data.Sum(d => {
