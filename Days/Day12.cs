@@ -72,7 +72,7 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
 
           count += CountMatches(remainder, runs.Skip(1).ToList());
         }
-              }
+      }
       return count;
     }
 
