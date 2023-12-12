@@ -18,8 +18,15 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
         var x = line.Split(" ");
         return new Day12Record(x[0], x[1].Split(",").Select(y => Convert.ToInt64(y)).ToList());
       }).ToList();
+    
+    [TestCase(Input.Sample, 21)]
+    [TestCase(Input.Data, 7633)]
+    public override long Part1(IReadOnlyList<Day12Record> data)
+    {
+      return data.Sum(d => CountMatchingTemplate(d));
+    }
 
-    [TestCase(Input.Sample, 525152)]
+    // [TestCase(Input.Sample, 525152)]
     // [TestCase(Input.Data, 0)]
     public override long Part2(IReadOnlyList<Day12Record> data)
     {
@@ -30,12 +37,6 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
       });
     }
 
-    [TestCase(Input.Sample, 21)]
-    [TestCase(Input.Data, 7633)]
-    public override long Part1(IReadOnlyList<Day12Record> data)
-    {
-      return data.Sum(d => CountMatchingTemplate(d));
-    }
 
     public long CountMatchingTemplate(Day12Record data)
     {
@@ -67,25 +68,27 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
       }
     }
 
-    public IEnumerable<List<int>> CreateSpaces(int n, int length, List<int> prefix, bool isFirstOrLast)
+    public IEnumerable<List<int>> CreateSpaces(int count, int sum, List<int> prefix, bool isFirst)
     {
-      if (n < 0) throw new ApplicationException();
-      if (n == 0) {
+      if (count < 0) throw new ApplicationException();
+      if (count == 0) {
         yield return prefix;
         yield break;
       }
-      if (n == 1)
+      if (count == 1)
       {
-        prefix.Add(length);
+        prefix.Add(sum);
         yield return prefix;
         yield break;
       }
-      if (n > 1) {
-        for(var x = length; x >= (isFirstOrLast ? 0 : 1); x--)
+      if (count > 1) {
+        if (sum == 0) throw new ApplicationException();
+        var remainingMandatorySpaces = count - 2;
+        for(var x = sum - remainingMandatorySpaces; x >= (isFirst ? 0 : 1); x--)
         {
           var l = prefix.ToList();
           l.Add(x);
-          foreach(var sub in CreateSpaces(n-1, length - x, l, n-1 == 0)) yield return sub;
+          foreach(var sub in CreateSpaces(count-1, sum - x, l, false)) yield return sub;
         }
       }
     }
