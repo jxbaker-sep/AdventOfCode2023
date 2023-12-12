@@ -11,4 +11,6 @@ public static class Helper
             yield return x;
         }
     }
+
+    public static T Identity<T>(T t) => t;
 }

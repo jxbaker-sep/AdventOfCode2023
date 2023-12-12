@@ -27,13 +27,13 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
     }
 
     [TestCase(Input.Sample, 525152)]
-    [TestCase(Input.Data, 23903579139437)]
+    [TestCase(Input.Data, 23_903_579_139_437)]
     public override long Part2(IReadOnlyList<Day12Record> data)
     {
       return data.Sum(d => {
-        var d2 = new Day12Record(Enumerable.Repeat(d.Template, 5).Join("?"),
-          Enumerable.Repeat(d.Runs, 5).SelectMany(it=>it).ToList());
-        var x = CountMatches(d2.Template, d2.Runs);
+        var template = Enumerable.Repeat(d.Template, 5).Join("?");
+        var runs = Enumerable.Repeat(d.Runs, 5).SelectMany(Helper.Identity).ToList();
+        var x = CountMatches(template, runs);
         return x;
       });
     }
@@ -72,7 +72,7 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
 
           count += CountMatches(remainder, runs.Skip(1).ToList());
         }
-      }
+              }
       return count;
     }
 
