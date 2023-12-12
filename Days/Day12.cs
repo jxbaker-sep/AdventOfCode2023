@@ -23,86 +23,52 @@ public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
     [TestCase(Input.Data, 7633)]
     public override long Part1(IReadOnlyList<Day12Record> data)
     {
-      return data.Sum(d => CountMatchingTemplate(d));
+      return data.Sum(d => CreateMatches(d.Template, d.Runs).Count());
     }
 
-    // [TestCase(Input.Sample, 525152)]
-    // [TestCase(Input.Data, 0)]
+    [TestCase(Input.Sample, 525152)]
+    [TestCase(Input.Data, 0)]
     public override long Part2(IReadOnlyList<Day12Record> data)
     {
       return data.Sum(d => {
-        var d2 = new Day12Record(Enumerable.Repeat(d.Template, 5).Join(),
+        var d2 = new Day12Record(Enumerable.Repeat(d.Template, 5).Join("?"),
           Enumerable.Repeat(d.Runs, 5).SelectMany(it=>it).ToList());
-        return CountMatchingTemplate(d2);
+        var x = CreateMatches(d2.Template, d2.Runs).Count();
+        return x;
       });
     }
 
 
-    public long CountMatchingTemplate(Day12Record data)
+    public IEnumerable<string> CreateMatches(string template, List<long> runs)
     {
-      return Templates(data).Where(template => Matches(template, data.Template)).Count();
-    }
-
-    public bool Matches(string template, string test)
-    {
-      if (template.Length != test.Length) throw new ApplicationException();
-      foreach(var (a,b) in template.Zip(test))
+      var t = runs[0];
+      var myPattern = Enumerable.Repeat('#', (int)t).Join();
+      var isLast = runs.Count == 1;
+      if (!isLast) myPattern += '.';
+      var minNext = isLast ? 0 : runs.Skip(1).Sum() + runs.Skip(1).Count() - 1;
+      var available = template.Length - minNext;
+      for(var spaces = 0; spaces + myPattern.Length <= available; spaces++)
       {
-        if (b == '?') continue;
-        if (a != b) return false;
-      }
-      return true;
-    }
-
-    private IEnumerable<string> Templates(Day12Record data)
-    {
-      var goalLength = data.Template.Length;
-
-      var runLength = (int)data.Runs.Sum();
-      var numberOfRuns = data.Runs.Count;
-      var spacesLength = goalLength - runLength ;
-
-      foreach(var spaces in CreateSpaces( numberOfRuns + 1, spacesLength, new List<int>(), true))
-      {
-        yield return CreateTemplate(spaces, data.Runs);
-      }
-    }
-
-    public IEnumerable<List<int>> CreateSpaces(int count, int sum, List<int> prefix, bool isFirst)
-    {
-      if (count < 0) throw new ApplicationException();
-      if (count == 0) {
-        yield return prefix;
-        yield break;
-      }
-      if (count == 1)
-      {
-        prefix.Add(sum);
-        yield return prefix;
-        yield break;
-      }
-      if (count > 1) {
-        if (sum == 0) throw new ApplicationException();
-        var remainingMandatorySpaces = count - 2;
-        for(var x = sum - remainingMandatorySpaces; x >= (isFirst ? 0 : 1); x--)
+        var prefix = Enumerable.Repeat('.', spaces).Join();
+        if (Matches(template, prefix + myPattern))
         {
-          var l = prefix.ToList();
-          l.Add(x);
-          foreach(var sub in CreateSpaces(count-1, sum - x, l, false)) yield return sub;
+          var remainder = template[(prefix+myPattern).Length..];
+          if (!isLast)
+            foreach(var item in CreateMatches(remainder, runs.Skip(1).ToList())) yield return prefix + myPattern + item;
+          else if (Matches(remainder, Enumerable.Repeat('.', remainder.Length).Join()))
+            yield return prefix + myPattern;
         }
       }
     }
 
-    public string CreateTemplate(List<int> spaces, List<long> runs)
+    public bool Matches(string template, string pattern)
     {
-      var result = "";
-      result += Enumerable.Repeat(".", spaces[0]).Join();
-      foreach (var (r,s) in runs.Zip(spaces.Skip(1), (a,b)=>(a,b)))
+      foreach(var (a,b) in template.Take(pattern.Length).Zip(pattern))
       {
-        result += Enumerable.Repeat("#", (int)r).Join();
-        result += Enumerable.Repeat(".", s).Join();
+        if (a == '?') continue;
+        if (a != b) return false;
       }
-      return result;
+      return true;
     }
 }
 
