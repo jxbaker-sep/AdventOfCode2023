@@ -17,7 +17,7 @@ public class Day13 : AdventOfCode<long, Day13Data>
     [TestCase(Input.Data, 30802)]
     public override long Part1(Day13Data data)
     {
-      return data.Select(d => FindReflections(d).Single()).Sum();
+      return data.Select(d => FindReflections(d, false).First()).Sum();
     }
 
     [TestCase(Input.Sample, 400)]
@@ -29,50 +29,37 @@ public class Day13 : AdventOfCode<long, Day13Data>
 
     public long FindSmudgedReflection(IReadOnlyList<string> rows)
     {
-      var originalReflection = FindReflections(rows).Single();
-      for(var row = 0; row < rows.Count; row += 1)
+      var originalReflection = FindReflections(rows, false).First();
+      foreach(var x in FindReflections(rows, true))
       {
-        for (var col = 0; col < rows[0].Length; col += 1)
-        {
-          var smudged = rows.ToList();
-          smudged[row] = smudged[row][..col] + Smudge(smudged[row][col]) + smudged[row][(col+1)..];
-          try
-          {
-            foreach(var x in FindReflections(smudged))
-              if (x != originalReflection)
-                return x;
-          }
-          catch(ApplicationException) {}
-        }
+        if (x != originalReflection) return x;
       }
       throw new ApplicationException();
     }
 
-    private string Smudge(char v)
+    public IEnumerable<long> FindReflections(IReadOnlyList<string> rows, bool allowOneSmudge)
     {
-        return v switch
-        { 
-          '.' => "#", 
-          '#' => ".", 
-          _ => throw new ApplicationException() 
-        };
+      foreach(var x in FindReflectionsImpl(rows, allowOneSmudge)) yield return x * 100;
+      foreach(var x in FindReflectionsImpl(Invert(rows), allowOneSmudge)) yield return x;
     }
 
-    public IEnumerable<long> FindReflections(IReadOnlyList<string> rows, bool isFlipped = false)
+    public IEnumerable<long> FindReflectionsImpl(IReadOnlyList<string> rows, bool allowOneSmudge)
     {
       for(var i = 1; i < rows.Count; i++)
       {
         var found = true;
+        var smudges = 0;
         for (int n = 0; n + i < rows.Count && i - 1 - n >= 0; n++)
         {
-          if (rows[i + n] != rows[i - 1 - n]) { found = false; break; } 
+          var diffCount = rows[i + n].Zip(rows[i - 1 - n]).Where(it => it.First != it.Second).Count();
+          if (diffCount == 0) continue;
+          smudges += diffCount;
+          if (allowOneSmudge && smudges == 1) continue;
+          found = false;
+          break;
         }
-        if (found) yield return i * 100;
+        if (found) yield return i;
       }
-
-      if (isFlipped) yield break;
-      var inverted = Invert(rows);
-      foreach(var x in FindReflections(inverted, true)) yield return x / 100;
     }
 
     public IReadOnlyList<string> Invert(IReadOnlyList<string> rows)
