@@ -359,4 +359,48 @@ public static class EnumerableExtensions
         return self.Rows().SelectMany(y => self.Cols().Select(x => new Position(y, x)));
     }
 
+    public static List<List<T>> RotateRight<T>(this IReadOnlyList<IReadOnlyList<T>> self)
+    {
+        var result = new List<List<T>>();
+        for(var col = 0; col < self[0].Count; col++)
+        {
+            var item = new List<T>();
+            result.Add(item);
+            for(var row = self.Count - 1; row >= 0; row--)
+            {
+                item.Add(self[row][col]);
+            }
+        }
+        return result;
+    }
+
+
+    public static List<List<T>> RotateLeft<T>(this IReadOnlyList<IReadOnlyList<T>> self)
+    {
+        var result = new List<List<T>>();
+        for(var col = self[0].Count - 1; col >= 0 ; col--)
+        {
+            var item = new List<T>();
+            result.Add(item);
+            for(var row = 0; row < self.Count; row++)
+            {
+                item.Add(self[row][col]);
+            }
+        }
+        return result;
+    }
+
+    private static void PrintGrid<T>(IReadOnlyList<IReadOnlyList<T>> data)
+    {
+        for (var row = 0; row < data.Count; row++)
+        {
+            Console.WriteLine();
+            for (var col = 0; col < data[0].Count; col++)
+            {
+                Console.Write($"{data[row][col]}");
+            }
+        }
+        Console.WriteLine();
+    }
+
 }
