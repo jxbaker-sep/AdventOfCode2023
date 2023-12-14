@@ -31,12 +31,12 @@ public class Day07 : AdventOfCode<long,IReadOnlyList<HandValue>>
         }).ToList();
     }
 
-    private long ComputeWeight(long type, List<long> longs)
+    private static long ComputeWeight(long type, List<long> longs)
     {
         return longs.Aggregate(type, (accum, next) => accum * 15 + next);
     }
 
-    private long ComputeType(List<long> longs)
+    private static long ComputeType(List<long> longs)
     {
         var temp = longs.GroupToDictionary();
         var groups = temp.ToDictionary(it => it.Key, it => it.Value.Count);
@@ -68,12 +68,12 @@ public class Day07 : AdventOfCode<long,IReadOnlyList<HandValue>>
         return ComputeType(groups.SelectMany(g => Enumerable.Repeat(g.Key, g.Value)).ToList());
     }
 
-    private List<long> ComputeLongs2(string v)
+    private static List<long> ComputeLongs2(string v)
     {
         return v.Select(c => (long)"J23456789TQKA".IndexOf(c)).ToList();
     }
 
-    private List<long> ComputeLongs(string v)
+    private static List<long> ComputeLongs(string v)
     {
         return v.Select(c => (long)"23456789TJQKA".IndexOf(c)).ToList();
     }

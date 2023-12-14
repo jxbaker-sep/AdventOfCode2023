@@ -56,7 +56,7 @@ zoneight234
         return GetDigit(m.Groups[1].Value) * 10 + GetDigit(m2.Groups[1].Value);
     }
 
-    private long GetDigit(string s)
+    private static long GetDigit(string s)
     {
         var ds = new[]{"0","1","2","3","4","5","6","7","8","9"};
         var index = Array.IndexOf(ds, s);

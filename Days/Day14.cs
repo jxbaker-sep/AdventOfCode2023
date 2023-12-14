@@ -50,7 +50,7 @@ public class Day14 : AdventOfCode<long, Day14Data>
 
     private static string Key(Day14Data data) => data.SelectMany(row => row).Join();
 
-    public Day14Data RollNorth(Day14Data data)
+    public static Day14Data RollNorth(Day14Data data)
     {
       var colMax = Enumerable.Repeat(0, data[0].Count).ToList();
       var result = Enumerable.Range(0, data.Count).Select(row => Enumerable.Repeat('.', data[0].Count).ToList()).ToList();

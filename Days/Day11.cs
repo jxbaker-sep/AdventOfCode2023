@@ -37,7 +37,7 @@ public class Day11 : AdventOfCode<long, Galaxies>
         return 0;
     }
 
-    private long Distance(Position a, Position b, IReadOnlySet<long> doubledRows, IReadOnlySet<long> doubledCols,
+    private static long Distance(Position a, Position b, IReadOnlySet<long> doubledRows, IReadOnlySet<long> doubledCols,
         long expansionFactor)
     {
         var m = a.ManhattanDistance(b);
@@ -53,14 +53,14 @@ public class Day11 : AdventOfCode<long, Galaxies>
         return m + z * (expansionFactor - 1);
     }
 
-    private IReadOnlySet<long> DetectDoubledRows(Galaxies data)
+    private static IReadOnlySet<long> DetectDoubledRows(Galaxies data)
     {
         
         var rows = data.Select(it => it.Y).ToHashSet();
         return data.Rows().Where(y => !rows.Contains(y)).ToHashSet();
     }
 
-    private IReadOnlySet<long> DetectDoubledCols(Galaxies data)
+    private static IReadOnlySet<long> DetectDoubledCols(Galaxies data)
     {
         var cols = data.Select(it => it.X).ToHashSet();
         return data.Cols().Where(x => !cols.Contains(x)).ToHashSet();

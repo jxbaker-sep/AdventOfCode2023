@@ -55,7 +55,7 @@ namespace AdventOfCode2023.Utils
                     Input.Raw => Parse(testCase.Raw),
                     _ => throw new ApplicationException()
                 });
-                if (!actual!.Equals(Coerce2nd(actual, testCase.Expected)))
+                if (!actual!.Equals(AdventOfCode<TOut, TIn>.Coerce2nd(actual, testCase.Expected)))
                 {
                     Console.WriteLine($"\nERROR! {this.GetType().Name}/Part 1/{testCase.Input} expected {testCase.Expected}, got {actual}");
                 }
@@ -71,14 +71,14 @@ namespace AdventOfCode2023.Utils
                     Input.Raw => Parse(testCase.Raw),
                     _ => throw new ApplicationException()
                 });
-                if (!actual!.Equals(Coerce2nd(actual, testCase.Expected)))
+                if (!actual!.Equals(AdventOfCode<TOut, TIn>.Coerce2nd(actual, testCase.Expected)))
                 {
                     Console.WriteLine($"\nERROR! {this.GetType().Name}/Part 2/{testCase.Input} expected {testCase.Expected}, got {actual}");
                 }
             }
         }
 
-        object? Coerce2nd(object n, object n2)
+        static object? Coerce2nd(object n, object n2)
         {
             if (n2 == null) return n2;
             if (n2.GetType() == typeof(int) && n.GetType() == typeof(long))

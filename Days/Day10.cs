@@ -88,7 +88,7 @@ public class Day10 : AdventOfCode<long, Day10Data>
         return result;
     }
 
-    private IEnumerable<Vector> VectorsOut(char pipe)
+    private static IEnumerable<Vector> VectorsOut(char pipe)
     {
         if (pipe == Vertical || pipe == NE || pipe == NW)
             yield return Vector.North; 
@@ -109,7 +109,7 @@ public class Day10 : AdventOfCode<long, Day10Data>
         return area - x.Count / 2  + 1;
     }
 
-    public long AreaOfPolygon(IReadOnlyList<Position> poly)
+    public static long AreaOfPolygon(IReadOnlyList<Position> poly)
     {
         return poly.Windows2().Append((poly.Last(), poly.First()))
             .Aggregate(0L, (accum, it) => accum + it.Item1.X * it.Item2.Y - it.Item1.Y * it.Item2.X)

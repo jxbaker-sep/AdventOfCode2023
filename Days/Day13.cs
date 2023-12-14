@@ -43,7 +43,7 @@ public class Day13 : AdventOfCode<long, Day13Data>
       foreach(var x in FindReflectionsImpl(Invert(rows), allowOneSmudge)) yield return x;
     }
 
-    public IEnumerable<long> FindReflectionsImpl(IReadOnlyList<string> rows, bool allowOneSmudge)
+    public static IEnumerable<long> FindReflectionsImpl(IReadOnlyList<string> rows, bool allowOneSmudge)
     {
       for(var i = 1; i < rows.Count; i++)
       {
@@ -62,7 +62,7 @@ public class Day13 : AdventOfCode<long, Day13Data>
       }
     }
 
-    public IReadOnlyList<string> Invert(IReadOnlyList<string> rows)
+    public static IReadOnlyList<string> Invert(IReadOnlyList<string> rows)
     {
       var result = new List<string>();
       for (var col = 0; col < rows[0].Length; col++)

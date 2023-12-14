@@ -39,7 +39,7 @@ public class Day05 : AdventOfCode<long,Day05Struct>
         return new Day05Struct(seeds, steps);
     }
 
-    private List<N3> FillInZeroes(IReadOnlyList<N3> n3s)
+    private static List<N3> FillInZeroes(IReadOnlyList<N3> n3s)
     {
         var sorted = n3s.OrderBy(it => it.DestinationRangeStart).ToList();
         var n1 = sorted[0];
