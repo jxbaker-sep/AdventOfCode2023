@@ -56,24 +56,8 @@ public class Day16 : AdventOfCode<long, Day16Data>
     private IEnumerable<Vector> Adjacent(char c, Vector v)
     {
       if (c == '.') yield return  v;
-      else if (c == '-')
-      {
-          if (v == Vector.East || v == Vector.West) yield return v;
-          else
-          {
-            yield return Vector.East;
-            yield return Vector.West;
-          }
-      }
-      else if (c == '|')
-      {
-          if (v == Vector.North || v == Vector.South) yield return v;
-          else
-          {
-            yield return Vector.North;
-            yield return Vector.South;
-          }
-      }
+      else if (c == '-') foreach(var result in Splitter(v, Vector.East, Vector.West)) yield return result;
+      else if (c == '|') foreach(var result in Splitter(v, Vector.North, Vector.South)) yield return result;
       else if (c == '/')
       {
         if (v == Vector.East) yield return Vector.North;
@@ -89,5 +73,14 @@ public class Day16 : AdventOfCode<long, Day16Data>
         else if (v == Vector.North) yield return Vector.West;
       }
       else throw new ApplicationException();
+    }
+
+    public IEnumerable<Vector> Splitter(Vector input, Vector out1, Vector out2)
+    {
+      if (input == out1 || input == out2) yield return input;
+      else{
+        yield return out1;
+        yield return out2;
+      }
     }
 }
