@@ -41,54 +41,52 @@ public class Day16 : AdventOfCode<long, Day16Data>
       {
         var position = current.p;
         var vector = current.v;
-        foreach(var next in Adjacent(grid, position, vector))
+        foreach(var next in Adjacent(grid[(int)position.Y][(int)position.X], vector))
         {
-          if (next.p.X < 0 || next.p.Y < 0) continue;
-          if (next.p.Y >= grid.Count || next.p.X >= grid[0].Length) continue;
-          if (closed.Add(next)) open.Enqueue(next);
+          var p = position + next;
+          if (p.X < 0 || p.Y < 0) continue;
+          if (p.Y >= grid.Count || p.X >= grid[0].Length) continue;
+          if (closed.Add((p, next))) open.Enqueue((p, next));
         }
       }
 
       return closed.Select(it => it.p).Distinct().LongCount();
     }
 
-    private IEnumerable<(Position p, Vector v)> Adjacent(Day16Data grid, Position p, Vector v)
+    private IEnumerable<Vector> Adjacent(char c, Vector v)
     {
-      var c = grid[(int)p.Y][(int)p.X];
-      if (c == '.') yield return  (p + v, v);
+      if (c == '.') yield return  v;
       else if (c == '-')
       {
-          if (v == Vector.East || v == Vector.West) yield return (p + v, v);
+          if (v == Vector.East || v == Vector.West) yield return v;
           else
           {
-            yield return (p + Vector.East, Vector.East);
-            yield return (p + Vector.West, Vector.West);
+            yield return Vector.East;
+            yield return Vector.West;
           }
       }
       else if (c == '|')
       {
-          if (v == Vector.North || v == Vector.South) yield return (p + v, v);
+          if (v == Vector.North || v == Vector.South) yield return v;
           else
           {
-            yield return (p + Vector.North, Vector.North);
-            yield return (p + Vector.South, Vector.South);
+            yield return Vector.North;
+            yield return Vector.South;
           }
       }
       else if (c == '/')
       {
-        if (v == Vector.East) v = Vector.North;
-        else if (v == Vector.South) v = Vector.West;
-        else if (v == Vector.West) v = Vector.South;
-        else if (v == Vector.North) v = Vector.East;
-        yield return (p + v, v);
+        if (v == Vector.East) yield return Vector.North;
+        else if (v == Vector.South) yield return Vector.West;
+        else if (v == Vector.West) yield return Vector.South;
+        else if (v == Vector.North) yield return Vector.East;
       }
       else if (c == '\\')
       {
-        if (v == Vector.East) v = Vector.South;
-        else if (v == Vector.South) v = Vector.East;
-        else if (v == Vector.West) v = Vector.North;
-        else if (v == Vector.North) v = Vector.West;
-        yield return (p + v, v);
+        if (v == Vector.East) yield return Vector.South;
+        else if (v == Vector.South) yield return Vector.East;
+        else if (v == Vector.West) yield return Vector.North;
+        else if (v == Vector.North) yield return Vector.West;
       }
       else throw new ApplicationException();
     }
