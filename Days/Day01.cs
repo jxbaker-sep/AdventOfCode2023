@@ -14,21 +14,26 @@ using Board = IReadOnlyList<IReadOnlyList<char>>;
 public class Day01 : AdventOfCode<long, GameState>
 {
     public readonly Position Goal = new(0, 8);
-    public readonly Position Start = new(9, 8);
 
     public override GameState Parse(string input) {
         var snakes = new List<Position>();
-        var board = input.Lines().Take(10).Select((line, row) => line.WithIndices().Aggregate(new List<char>(), (accum, c) =>
+        Position? start = null;
+        var board = input.Lines().TakeWhile(it=>it.Trim().Length > 0).Select((line, row) => line.WithIndices().Aggregate(new List<char>(), (accum, c) =>
             {
                 if (c.Value == '~') {snakes.Add(new Position(row, c.Index)); accum.Add(Empty);}
+                else if (c.Value == 'P')
+                {
+                    start = new Position(row, c.Index);
+                    accum.Add(Empty);
+                }
                 else if (c.Value == 'P' || c.Value == 'G') accum.Add(Empty);
                 else accum.Add(c.Value);
                 return accum;
             })).ToList();
-        return new GameState(Start, 0, snakes, board);
+        return new GameState(start ?? throw new ApplicationException(), 0, snakes, board);
     }
 
-    [TestCase(Input.Sample, 0, N = 14)]
+    [TestCase(Input.Sample, 0, N = 15)]
     public override long Part1(GameState input)
     {
         FindPath(input);
@@ -43,6 +48,8 @@ public class Day01 : AdventOfCode<long, GameState>
     public readonly char RockBomb = '*';
     public readonly char BrownWall = 'b';
     public readonly char BrownButton = 'B';
+    public readonly char SilverWall = 'a';
+    public readonly char SilverButton = 'A';
     public readonly char Snake = '~';
 
 
@@ -66,7 +73,7 @@ public class Day01 : AdventOfCode<long, GameState>
                 }
             }
         }
-        throw new ApplicationException();
+        throw new ApplicationException("No solution found!");
     }
 
     private void PrintGameState(string description)
@@ -102,11 +109,11 @@ public class Day01 : AdventOfCode<long, GameState>
     {
         var player = move.GameState.Player;
         var board = move.GameState.Board;
-        var newSnakes = new List<Position>();
-        foreach(var (snake_, index) in move.GameState.Snakes.WithIndices())
+        var snakes = move.GameState.Snakes.ToList();
+        for (var s = 0; s < snakes.Count; )
         {
-            var otherSnakes = move.GameState.Snakes.Skip(index).Concat(newSnakes).ToList();
-            var snake = snake_;
+            var otherSnakes = move.GameState.Snakes.WithIndices().Where(i => i.Index != s).Select(it => it.Value).ToList();
+            var snake = snakes[0];
             var moved = true;
             while (moved)
             {
@@ -126,9 +133,13 @@ public class Day01 : AdventOfCode<long, GameState>
                     moved = true;
                 }
             }
-            newSnakes.Add(snake);
+            if (moved)
+            {
+                snakes[0] = snake;
+                s = 0;
+            } else s++;
         }
-        yield return move with {GameState = move.GameState with {Snakes = newSnakes}};
+        yield return move with {GameState = move.GameState with {Snakes = snakes}};
     }
 
     private IEnumerable<Move> Open2(GameState gameState)
@@ -154,6 +165,16 @@ public class Day01 : AdventOfCode<long, GameState>
                         if (z[row][col] == BrownWall || z[row][col] == BrownButton)
                             z[row][col] = Empty;
                 yield return new Move(gameState with{Board = z}, $"Explode All Browns");
+            }
+            else if (c == SilverWall) continue;
+            else if (c == SilverButton)
+            {
+                var z = Copy(gameState.Board);
+                for(var row = 0; row < gameState.Board.Count; row++)
+                    for(var col = 0; col < gameState.Board[0].Count; col++)
+                        if (z[row][col] == SilverWall || z[row][col] == SilverButton)
+                            z[row][col] = Empty;
+                yield return new Move(gameState with{Board = z}, $"Explode All Silvers");
             }
             else if (c == Movable || c == Sliding) {
                 var next2 = next + vector;
