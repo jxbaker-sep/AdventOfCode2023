@@ -17,16 +17,18 @@ public class Day01 : AdventOfCode<long, GameState>
     public readonly Position Start = new(9, 8);
 
     public override GameState Parse(string input) {
-        var board = input.Lines().Select(line => line.Aggregate(new List<char>(), (accum, c) =>
+        var snakes = new List<Position>();
+        var board = input.Lines().Select((line, row) => line.WithIndices().Aggregate(new List<char>(), (accum, c) =>
             {
-                if (c == 'P' || c == 'G') accum.Add(Empty);
-                else accum.Add(c);
+                if (c.Value == '~') {snakes.Add(new Position(row, c.Index)); accum.Add(Empty);}
+                else if (c.Value == 'P' || c.Value == 'G') accum.Add(Empty);
+                else accum.Add(c.Value);
                 return accum;
             })).ToList();
-        return new GameState(Start, 0, new List<Position>(), board);
+        return new GameState(Start, 0, snakes, board);
     }
 
-    [TestCase(Input.Sample, 0, N = 1)]
+    [TestCase(Input.Sample, 0, N = 2)]
     public override long Part1(GameState input)
     {
         FindPath(input);
@@ -39,6 +41,9 @@ public class Day01 : AdventOfCode<long, GameState>
     public readonly char Exploding = 'e';
     public readonly char Movable = 'm';
     public readonly char RockBomb = '*';
+    public readonly char BrownWall = 'b';
+    public readonly char BrownButton = 'B';
+    public readonly char Snake = '~';
 
 
     private void FindPath(GameState start)
@@ -88,6 +93,45 @@ public class Day01 : AdventOfCode<long, GameState>
 
     private IEnumerable<Move> Open(GameState gameState)
     {
+        foreach(var next in Open2(gameState))
+            foreach(var movedSnake in MoveSnakes(next))
+                yield return movedSnake;
+    }
+
+    private IEnumerable<Move> MoveSnakes(Move move)
+    {
+        var player = move.GameState.Player;
+        var board = move.GameState.Board;
+        var newSnakes = new List<Position>();
+        foreach(var snake_ in move.GameState.Snakes)
+        {
+            var snake = snake_;
+            var moved = true;
+            while (moved)
+            {
+                moved = false;
+                var dx = (snake.X < player.X) ? Vector.East : (snake.X > player.X ? Vector.West : Vector.Zero);
+                if (snake + dx == player) yield break;
+                if (board.At(snake + dx) == Empty && dx != Vector.Zero)
+                {
+                    snake += dx;
+                    moved = true;
+                }
+                var dy = (snake.Y < player.Y) ? Vector.South : (snake.Y > player.Y ? Vector.North : Vector.Zero);
+                if (snake + dy == player) yield break;
+                if (board.At(snake + dy) == Empty && dy != Vector.Zero)
+                {
+                    snake += dy;
+                    moved = true;
+                }
+            }
+            newSnakes.Add(snake);
+        }
+        yield return move with {GameState = move.GameState with {Snakes = newSnakes}};
+    }
+
+    private IEnumerable<Move> Open2(GameState gameState)
+    {
         var p = gameState.Player;
         foreach(var vector in new []{Vector.North, Vector.East, Vector.West, Vector.South})
         {
@@ -100,6 +144,16 @@ public class Day01 : AdventOfCode<long, GameState>
                 yield return new Move(gameState with {Player = next}, VectorWord(vector));
             }
             else if (c == Wall) continue;
+            else if (c == BrownWall) continue;
+            else if (c == BrownButton)
+            {
+                var z = Copy(gameState.Board);
+                for(var row = 0; row < gameState.Board.Count; row++)
+                    for(var col = 0; col < gameState.Board[0].Count; col++)
+                        if (z[row][col] == BrownWall || z[row][col] == BrownButton)
+                            z[row][col] = Empty;
+                yield return new Move(gameState with{Board = z}, $"Explode All Browns");
+            }
             else if (c == Movable || c == Sliding) {
                 var next2 = next + vector;
                 if (!gameState.Board.TryAt(next2, out var c2)) continue;
