@@ -31,29 +31,36 @@ public class Day18 : AdventOfCode<long, Day18Data>
     {
       var dig = new Dictionary<Position, GroundType>{{Position.Zero, GroundType.Trench}};
       var p = Position.Zero;
+      var l = new List<Position>{Position.Zero};
       foreach(var instruction in digInstructions)
       {
         for(var n = 0; n < instruction.Length; n++)
         {
           p += instruction.Direction;
+          
           dig[p] = GroundType.Trench;
         }
       }
 
-      var bounds = dig.Bounds().Extend(1);
-      foreach(var point in bounds.Points())
-      {
-        if (!dig.ContainsKey(point)) dig[point] = GroundType.Unknown;
-      }
+      var aop = Helper.AreaOfPolygon(dig.Keys.ToList());
 
-      FloodFill(dig, bounds.Points().First());
+      // var bounds = dig.Bounds().Extend(1);
+      return aop + (dig.Keys.Count / 2) + 1;
+      // foreach(var point in bounds.Points())
+      // {
+      //   if (!dig.ContainsKey(point)) dig[point] = GroundType.Unknown;
+      // }
 
-      return dig.Values.Count(it => it != GroundType.Clear);
+      // FloodFill(dig, bounds.Points().First());
+
+      
+
+      // return dig.Values.Count(it => it != GroundType.Clear);
     }
 
 
-    // [TestCase(Input.Sample, 94)]
-    // [TestCase(Input.Data, 1017)]
+    // [TestCase(Input.Sample, 952_408_144_115)]
+    // [TestCase(Input.Data, 0)]
     public override long Part2(Day18Data grid)
     {
       return 0;
