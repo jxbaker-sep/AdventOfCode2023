@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using TypeParser;
 
 namespace AdventOfCode2023.Day18;
@@ -29,56 +30,42 @@ public class Day18 : AdventOfCode<long, Day18Data>
     [TestCase(Input.Data, 40761)]
     public override long Part1(Day18Data digInstructions)
     {
-      var dig = new Dictionary<Position, GroundType>{{Position.Zero, GroundType.Trench}};
-      var p = Position.Zero;
-      var l = new List<Position>{Position.Zero};
-      foreach(var instruction in digInstructions)
-      {
-        for(var n = 0; n < instruction.Length; n++)
-        {
-          p += instruction.Direction;
-          
-          dig[p] = GroundType.Trench;
-        }
-      }
-
-      var aop = Helper.AreaOfPolygon(dig.Keys.ToList());
-
-      // var bounds = dig.Bounds().Extend(1);
-      return aop + (dig.Keys.Count / 2) + 1;
-      // foreach(var point in bounds.Points())
-      // {
-      //   if (!dig.ContainsKey(point)) dig[point] = GroundType.Unknown;
-      // }
-
-      // FloodFill(dig, bounds.Points().First());
-
-      
-
-      // return dig.Values.Count(it => it != GroundType.Clear);
+        return AreaOfDig(digInstructions);
     }
 
 
-    // [TestCase(Input.Sample, 952_408_144_115)]
-    // [TestCase(Input.Data, 0)]
-    public override long Part2(Day18Data grid)
+    [TestCase(Input.Sample, 952_408_144_115)]
+    [TestCase(Input.Data, 106_920_098_354_636)]
+    public override long Part2(Day18Data badDigInstructions)
     {
-      return 0;
+      var digInstructions = badDigInstructions.Select(Goodify).ToList();
+      return AreaOfDig(digInstructions);
     }
 
-    private void FloodFill(Dictionary<Position, GroundType> dig, Position position)
+    private static long AreaOfDig(Day18Data digInstructions)
     {
-        var open = new[]{position}.ToQueue();
-        while (open.TryDequeue(out var value))
+        var p = Position.Zero;
+        var l = new List<Position> { Position.Zero };
+        foreach (var instruction in digInstructions)
         {
-          foreach(var n in value.OrthoganalNeighbors())
-          {
-            if (!dig.ContainsKey(n)) continue;
-            if (dig[n] != GroundType.Unknown) continue;
-            dig[n] = GroundType.Clear;
-            open.Enqueue(n);
-          }
+            p += instruction.Direction * instruction.Length;
+            l.Add(p);
         }
+
+        var aop = Helper.AreaOfPolygon(l);
+        var x = digInstructions.Sum(it => it.Length);
+
+        return aop + (x / 2) + 1;
+    }
+    
+    private DigInstruction Goodify(DigInstruction bad)
+    {
+      var x = bad.Color[2..^1];
+      var d = Convert.ToInt32($"{x[^1]}");
+      var l = Convert.ToInt64(x[..^1], 16);
+
+      var ds = new[]{Vector.East, Vector.South,Vector.West,Vector.North};
+      return new(ds[d], l, bad.Color);
     }
 
     public Vector d2v(char c) => c switch{
