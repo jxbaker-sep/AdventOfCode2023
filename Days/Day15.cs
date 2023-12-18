@@ -30,7 +30,7 @@ public class Day15 : AdventOfCode<long, Day15Data>
       foreach(var instruction in data)
       {
         if (instruction.EndsWith("-")) {
-          var label = instruction[..(instruction.Length-1)];
+          var label = instruction[..^1];
           Remove(boxes, label);
         }
         else {

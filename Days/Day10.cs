@@ -100,7 +100,7 @@ public class Day10 : AdventOfCode<long, Day10Data>
             yield return Vector.West;
     }
 
-    [TestCase(Input.Sample2, 10)]
+    [TestCase(Input.Sample, 10, N = 2)]
     [TestCase(Input.Data, 395)]
     public override long Part2(Day10Data data)
     {

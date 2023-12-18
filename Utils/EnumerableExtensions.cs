@@ -411,5 +411,31 @@ public static class EnumerableExtensions
         Console.WriteLine();
     }
 
+    public static T At<T>(this IReadOnlyList<IReadOnlyList<T>> grid, Position p)
+    {
+        return grid[(int)p.Y][(int)p.X];
+    }
+
+    public static void Set<T>(this List<List<T>> grid, Position p, T value)
+    {
+        grid[(int)p.Y][(int)p.X] = value;
+    }
+
+    public static bool ContainsPoint<T>(this IReadOnlyList<IReadOnlyList<T>> grid, Position p)
+    {
+        return p.X >= 0 && p.X < grid[0].Count && p.Y >= 0 && p.Y < grid.Count;
+    }
+
+    public static bool TryAt<T>(this IReadOnlyList<IReadOnlyList<T>> grid, Position p, out T value)
+    {
+        if (!grid.ContainsPoint(p))
+        {
+            value = default!;
+            return false;
+        }
+        value = grid.At(p);
+        return true;
+    }
+
 }
 

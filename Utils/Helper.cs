@@ -17,7 +17,7 @@ public static class Helper
 
     public static long AreaOfPolygon(IReadOnlyList<Position> poly)
     {
-        return poly.Windows2().Append((poly[poly.Count - 1], poly[0]))
+        return poly.Windows2().Append((poly[^1], poly[0]))
             .Aggregate(0L, (accum, it) => accum + it.Item1.X * it.Item2.Y - it.Item1.Y * it.Item2.X)
             / 2;
     }
