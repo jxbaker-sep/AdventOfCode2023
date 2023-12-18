@@ -18,7 +18,7 @@ public class Day01 : AdventOfCode<long, GameState>
 
     public override GameState Parse(string input) {
         var snakes = new List<Position>();
-        var board = input.Lines().Select((line, row) => line.WithIndices().Aggregate(new List<char>(), (accum, c) =>
+        var board = input.Lines().Take(10).Select((line, row) => line.WithIndices().Aggregate(new List<char>(), (accum, c) =>
             {
                 if (c.Value == '~') {snakes.Add(new Position(row, c.Index)); accum.Add(Empty);}
                 else if (c.Value == 'P' || c.Value == 'G') accum.Add(Empty);
@@ -28,7 +28,7 @@ public class Day01 : AdventOfCode<long, GameState>
         return new GameState(Start, 0, snakes, board);
     }
 
-    [TestCase(Input.Sample, 0, N = 2)]
+    [TestCase(Input.Sample, 0, N = 14)]
     public override long Part1(GameState input)
     {
         FindPath(input);
@@ -103,8 +103,9 @@ public class Day01 : AdventOfCode<long, GameState>
         var player = move.GameState.Player;
         var board = move.GameState.Board;
         var newSnakes = new List<Position>();
-        foreach(var snake_ in move.GameState.Snakes)
+        foreach(var (snake_, index) in move.GameState.Snakes.WithIndices())
         {
+            var otherSnakes = move.GameState.Snakes.Skip(index).Concat(newSnakes).ToList();
             var snake = snake_;
             var moved = true;
             while (moved)
@@ -112,14 +113,14 @@ public class Day01 : AdventOfCode<long, GameState>
                 moved = false;
                 var dx = (snake.X < player.X) ? Vector.East : (snake.X > player.X ? Vector.West : Vector.Zero);
                 if (snake + dx == player) yield break;
-                if (board.At(snake + dx) == Empty && dx != Vector.Zero)
+                if (board.At(snake + dx) == Empty && dx != Vector.Zero && !otherSnakes.Contains(snake + dx))
                 {
                     snake += dx;
                     moved = true;
                 }
                 var dy = (snake.Y < player.Y) ? Vector.South : (snake.Y > player.Y ? Vector.North : Vector.Zero);
                 if (snake + dy == player) yield break;
-                if (board.At(snake + dy) == Empty && dy != Vector.Zero)
+                if (board.At(snake + dy) == Empty && dy != Vector.Zero && !otherSnakes.Contains(snake + dy))
                 {
                     snake += dy;
                     moved = true;
