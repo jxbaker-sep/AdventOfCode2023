@@ -334,6 +334,14 @@ public static class EnumerableExtensions
         }
     }
 
+    public static Bounds Bounds<T>(this IReadOnlyDictionary<Position, T> self) => 
+        new(self.Keys.Select(it => it.Y).Min(),
+            self.Keys.Select(it => it.X).Min(),
+            self.Keys.Select(it => it.Y).Max(),
+            self.Keys.Select(it => it.X).Max()
+        );
+
+
     public static IEnumerable<long> Rows<T>(this IReadOnlyDictionary<Position, T> self) => self.Keys.Rows();
 
     public static IEnumerable<long> Cols<T>(this IReadOnlyDictionary<Position, T> self) => self.Keys.Cols();
@@ -404,3 +412,4 @@ public static class EnumerableExtensions
     }
 
 }
+

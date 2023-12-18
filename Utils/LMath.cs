@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.VisualBasic;
 
 namespace AdventOfCode2023.Utils
 {
@@ -20,7 +21,7 @@ namespace AdventOfCode2023.Utils
 
         public static bool IsInRange(this long item, long first, long last)
         {
-            return item >= first && item <= last;
+            return first <= item && item <= last;
         }
 
         public static long RoundUp(long numerator, long demoninator)
