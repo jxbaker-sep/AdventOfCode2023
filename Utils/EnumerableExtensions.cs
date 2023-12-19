@@ -398,7 +398,7 @@ public static class EnumerableExtensions
         return result;
     }
 
-    private static void PrintGrid<T>(IReadOnlyList<IReadOnlyList<T>> data)
+    private static void PrintGrid<T>(this IReadOnlyList<IReadOnlyList<T>> data)
     {
         for (var row = 0; row < data.Count; row++)
         {

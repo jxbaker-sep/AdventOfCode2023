@@ -1,0 +1,3388 @@
+Day01
+Start x1
+Right x8
+Up x2
+Left x7
+Down x1
+Left x1
+Down x1
+Left x7
+Push Up x1
+Right x15
+Up x2
+Left x14
+Up x1
+Left x1
+Push Down x1
+Right x7
+Up x2
+Left x2
+Up x2
+Right x1
+Up x1
+Down x1
+Right x1
+Down x5
+Left x1
+Down x1
+Left x1
+Down x1
+Left x5
+Push Up x1
+Up x1
+Push Up x1
+Down x1
+Right x15
+Up x2
+Left x7
+Down x1
+Left x1
+Down x1
+Left x7
+Up x2
+Push Up x1
+Right x15
+Down x2
+Left x4
+Push Up x1
+Right x4
+Up x2
+Left x3
+Push Left x1
+Right x3
+Down x2
+Left x15
+Up x2
+Right x9
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x2
+Left x15
+Up x2
+Right x9
+Up x1
+Right x1
+Up x1
+Right x3
+Down x1
+Explode All Browns x1
+Right x2
+Down x3
+Left x14
+Right x14
+Up x2
+Left x1
+Push Left x1
+Right x1
+Down x2
+Left x15
+Up x2
+Right x11
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x2
+Left x1
+Push Down x1
+Right x1
+Down x3
+Left x15
+Up x2
+Right x12
+Up x2
+Left x11
+Up x1
+Left x1
+Push Down x1
+Right x1
+Down x1
+Right x12
+Down x1
+Right x2
+Down x3
+Left x1
+Push Up x1
+Right x1
+Up x2
+Push Left x1
+Down x2
+Left x15
+Up x2
+Right x12
+Push Right x1
+Right x1
+Up x2
+Left x2
+Down x1
+Left x1
+Down x3
+Left x10
+Up x2
+Right x7
+Up x2
+Left x7
+Push Down x1
+Right x13
+Down x1
+Right x2
+Down x2
+Left x1
+Push Up x1
+Right x1
+Up x2
+Push Left x1
+Down x3
+Left x15
+Up x1
+Push Up x1
+Right x15
+Up x2
+Left x1
+Push Left x1
+Right x1
+Down x3
+Left x15
+Up x2
+Right x12
+Push Up x1
+Right x3
+Down x2
+Left x15
+Up x2
+Right x10
+Up x2
+Left x10
+Push Down x1
+Right x11
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x1
+Right x2
+Down x3
+Left x15
+Up x1
+Push Up x1
+Right x15
+Up x2
+Left x6
+Up x1
+Left x2
+Down x1
+Left x6
+Up x1
+Left x1
+Push Down x1
+Right x7
+Up x2
+Left x1
+Up x2
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x8
+Up x1
+Push Up x1
+Right x7
+Up x2
+Left x6
+Up x1
+Left x1
+Push Down x1
+Down x1
+Push Down x1
+Right x7
+Down x1
+Right x8
+Down x2
+Left x14
+Up x2
+Right x6
+Up x2
+Right x3
+Push Right x1
+Right x1
+Down x1
+Right x4
+Down x3
+Left x14
+Up x2
+Right x6
+Up x2
+Left x2
+Up x2
+Right x1
+Up x2
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x8
+Push Up x1
+Up x1
+Push Up x1
+Up x1
+Push Up x1
+Right x15
+Down x2
+Left x14
+Up x3
+Left x1
+Push Up x1
+Right x7
+Down x1
+Right x6
+Up x2
+Push Left x1
+Down x1
+Right x2
+Down x3
+Left x15
+Up x2
+Right x10
+Up x2
+Left x10
+Push Up x1
+Right x10
+Push Right x1
+Right x1
+Down x1
+Right x4
+Down x3
+Left x15
+Up x2
+Right x7
+Up x2
+Left x7
+Up x1
+Push Up x1
+Right x1
+Down x1
+Right x10
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x1
+Right x2
+Down x3
+Left x15
+Up x2
+Right x10
+Up x2
+Left x10
+Up x2
+Left x1
+Up x2
+Pick up rock bomb. x1
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x9
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Right x4
+Down x1
+Right x2
+Down x3
+Left x15
+Up x2
+Right x7
+Up x1
+Push Up x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x5
+Up x2
+Right x1
+Up x2
+Right x1
+Push Down x1
+Down x1
+Push Down x1
+Down x1
+Right x6
+Down x1
+Right x2
+Down x3
+Left x15
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Push Down x1
+Right x6
+Down x1
+Right x2
+Down x3
+Left x15
+Up x2
+Right x6
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x2
+Left x15
+Up x2
+Right x9
+Up x1
+Right x1
+Up x1
+Right x3
+Down x1
+Push Down x1
+Right x2
+Down x2
+Left x1
+Push Left x1
+Right x1
+Up x2
+Left x2
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x3
+Up x2
+Left x2
+Push Left x1
+Right x2
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Right x4
+Down x1
+Push Down x1
+Right x4
+Down x3
+Left x3
+Up x1
+Push Left x1
+Right x3
+Up x2
+Left x4
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x5
+Up x2
+Left x4
+Push Left x1
+Right x4
+Down x2
+Left x15
+Up x2
+Right x5
+Up x1
+Right x1
+Up x1
+Right x3
+Down x1
+Push Down x1
+Right x6
+Down x3
+Left x5
+Up x1
+Push Left x1
+Right x5
+Up x2
+Left x6
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x7
+Up x2
+Left x6
+Push Left x1
+Left x1
+Push Left x1
+Right x7
+Down x2
+Left x15
+Up x2
+Right x5
+Up x1
+Right x2
+Up x2
+Left x2
+Up x2
+Right x1
+Up x1
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x2
+Up x1
+Push Up x1
+Right x9
+Up x2
+Left x6
+Up x1
+Left x2
+Down x4
+Left x7
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Down x1
+Push Left x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x6
+Up x1
+Push Left x1
+Right x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x4
+Push Up x1
+Right x11
+Down x2
+Left x15
+Up x2
+Right x2
+Up x1
+Right x1
+Up x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x2
+Up x2
+Left x2
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x4
+Down x1
+Right x2
+Up x1
+Push Left x1
+Right x6
+Down x1
+Right x2
+Down x3
+Left x15
+Up x2
+Right x1
+Up x2
+Left x1
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x3
+Down x1
+Right x2
+Down x1
+Right x3
+Left x3
+Up x1
+Left x1
+Push Up x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x3
+Up x2
+Left x3
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Up x2
+Left x2
+Push Down x1
+Down x1
+Push Down x1
+Down x1
+Push Down x1
+Right x8
+Down x1
+Right x2
+Down x3
+Left x15
+Up x2
+Right x4
+Up x1
+Right x2
+Down x1
+Push Left x1
+Right x9
+Down x2
+Left x15
+Up x2
+Right x3
+Up x1
+Right x2
+Up x1
+Right x2
+Up x2
+Left x1
+Up x2
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x8
+Up x2
+Right x3
+Up x1
+Right x2
+Down x1
+Push Left x1
+Right x10
+Down x2
+Left x15
+Up x2
+Right x2
+Up x1
+Right x5
+Up x2
+Left x2
+Up x2
+Right x1
+Up x1
+Down x1
+Right x1
+Down x3
+Left x3
+Down x1
+Left x1
+Push Down x1
+Right x4
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Left x7
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x1
+Left x1
+Down x2
+Right x1
+Down x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x9
+Up x2
+Left x7
+Down x1
+Push Left x1
+Right x7
+Up x2
+Left x6
+Up x1
+Left x2
+Down x2
+Left x2
+Down x2
+Left x5
+Up x2
+Right x3
+Up x1
+Right x1
+Up x1
+Right x1
+Up x1
+Right x1
+Up x3
+Down x1
+Right x1
+Down x6
+Push Left x1
+Right x8
+Up x2
+Left x6
+Up x1
+Left x2
+Down x3
+Left x1
+Push Left x1
+Right x9
+Up x2
+Left x6
+Up x1
+Left x2
+Down x1
+Left x2
+Down x1
+Left x2
+Down x2
+Left x3
+Up x2
+Right x1
+Up x2
+Left x1
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Down x2
+Right x1
+Down x2
+Left x3
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Up x1
+Push Up x1
+Right x12
+Up x2
+Left x6
+Up x1
+Left x2
+Down x4
+Left x7
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x3
+Down x1
+Push Left x1
+Right x3
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Left x5
+Push Down x1
+Right x11
+Down x1
+Right x2
+Down x3
+Left x15
+Up x6
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Down x2
+Right x2
+Left x6
+Push Left x1
+Right x12
+Down x2
+Left x15
+Up x3
+Right x2
+Up x1
+Right x5
+Up x2
+Left x1
+Up x2
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x8
+Up x2
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Right x2
+Up x2
+Left x3
+Down x1
+Left x1
+Push Down x1
+Right x6
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Left x7
+Up x2
+Left x1
+Up x1
+Down x1
+Right x1
+Down x1
+Right x1
+Down x3
+Left x1
+Down x2
+Right x1
+Push Up x1
+Left x1
+Up x3
+Right x1
+Up x2
+Left x1
+Up x1
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x2
+Push Down x1
+Down x1
+Left x1
+Down x2
+Right x1
+Push Up x1
+Up x1
+Push Up x1
+Right x14
+Up x2
+Left x6
+Up x1
+Left x2
+Down x4
+Left x7
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x1
+Down x1
+Right x1
+Down x3
+Push Right x1
+Right x1
+Up x2
+Left x1
+Up x1
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x1
+Left x1
+Down x2
+Right x1
+Push Up x1
+Right x13
+Down x2
+Left x15
+Up x2
+Right x1
+Up x1
+Right x6
+Up x2
+Left x2
+Up x2
+Right x1
+Up x1
+Down x1
+Right x1
+Down x3
+Left x4
+Push Left x1
+Right x10
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x4
+Left x15
+Up x2
+Right x13
+Up x2
+Left x8
+Up x2
+Right x1
+Up x2
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x8
+Up x5
+Right x1
+Push Down x1
+Down x1
+Push Down x1
+Down x1
+Right x6
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x2
+Left x15
+Up x2
+Right x9
+Up x1
+Right x1
+Up x1
+Right x3
+Down x1
+Push Down x1
+Right x2
+Down x2
+Left x1
+Push Left x1
+Right x1
+Up x2
+Left x2
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x3
+Up x2
+Left x2
+Push Left x1
+Right x2
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Right x4
+Down x1
+Push Down x1
+Right x4
+Down x3
+Left x3
+Up x1
+Push Left x1
+Right x3
+Up x2
+Left x4
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x5
+Up x2
+Left x4
+Push Left x1
+Right x4
+Down x2
+Left x15
+Up x2
+Right x5
+Up x1
+Right x1
+Up x1
+Right x3
+Down x1
+Push Down x1
+Right x6
+Down x3
+Left x5
+Up x1
+Push Left x1
+Right x5
+Up x2
+Left x6
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x7
+Up x2
+Left x6
+Push Left x1
+Right x6
+Down x2
+Left x15
+Up x2
+Right x3
+Up x1
+Right x1
+Up x1
+Right x3
+Down x1
+Push Down x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x5
+Up x2
+Right x1
+Up x1
+Right x1
+Up x2
+Left x1
+Up x1
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x1
+Push Up x1
+Right x1
+Up x2
+Push Left x1
+Right x7
+Down x2
+Left x15
+Up x2
+Right x2
+Up x1
+Right x1
+Up x1
+Right x4
+Down x2
+Push Left x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x1
+Up x2
+Left x1
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x2
+Right x6
+Down x1
+Right x1
+Down x2
+Left x3
+Up x1
+Push Up x1
+Right x10
+Up x2
+Left x6
+Up x1
+Left x2
+Down x4
+Left x7
+Up x2
+Right x5
+Push Up x1
+Right x10
+Down x2
+Left x15
+Up x2
+Right x3
+Up x1
+Right x1
+Up x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Right x6
+Down x4
+Left x15
+Up x2
+Right x7
+Up x1
+Push Up x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x5
+Up x2
+Right x1
+Up x2
+Right x1
+Push Down x1
+Down x1
+Push Down x1
+Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x5
+Up x4
+Right x1
+Up x2
+Down x1
+Right x1
+Down x3
+Left x1
+Down x2
+Right x1
+Push Up x1
+Right x1
+Down x2
+Left x8
+Up x2
+Right x1
+Up x2
+Push Right x1
+Right x4
+Down x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x7
+Up x1
+Push Up x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x4
+Up x1
+Right x1
+Up x1
+Right x1
+Push Down x1
+Down x1
+Push Down x1
+Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x5
+Up x3
+Right x2
+Down x1
+Push Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x6
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x2
+Left x15
+Up x2
+Right x9
+Up x1
+Right x1
+Up x1
+Right x3
+Down x1
+Push Down x1
+Right x2
+Down x2
+Left x1
+Push Left x1
+Right x1
+Up x2
+Left x2
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x3
+Up x2
+Left x2
+Push Left x1
+Right x2
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Right x4
+Down x1
+Push Down x1
+Right x4
+Down x3
+Left x3
+Up x1
+Push Left x1
+Right x3
+Up x2
+Left x4
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x5
+Up x2
+Left x4
+Push Left x1
+Right x4
+Down x2
+Left x15
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x4
+Down x1
+Right x2
+Up x1
+Right x2
+Down x1
+Push Down x1
+Right x6
+Down x3
+Left x5
+Up x1
+Push Left x1
+Right x5
+Up x2
+Left x6
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x7
+Up x2
+Left x6
+Push Left x1
+Left x1
+Push Left x1
+Right x7
+Down x2
+Left x15
+Up x2
+Right x5
+Up x1
+Right x2
+Up x2
+Left x1
+Push Down x1
+Right x1
+Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x5
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x2
+Left x15
+Up x2
+Right x9
+Up x1
+Right x1
+Up x1
+Right x3
+Down x1
+Push Down x1
+Right x2
+Down x3
+Left x15
+Up x2
+Right x11
+Up x2
+Left x11
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x4
+Down x1
+Push Right x1
+Right x1
+Down x1
+Right x9
+Down x2
+Left x2
+Push Up x1
+Right x2
+Up x2
+Left x1
+Push Left x1
+Right x1
+Down x2
+Left x15
+Up x2
+Right x11
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x1
+Push Up x1
+Right x1
+Up x2
+Push Left x1
+Down x3
+Left x15
+Up x2
+Right x13
+Push Up x1
+Right x2
+Down x2
+Left x15
+Up x2
+Right x11
+Up x1
+Right x1
+Up x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Right x7
+Down x4
+Left x15
+Up x2
+Right x6
+Up x1
+Push Up x1
+Down x1
+Right x9
+Down x2
+Left x15
+Up x2
+Right x4
+Up x2
+Right x1
+Up x2
+Right x2
+Down x1
+Push Left x1
+Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Up x2
+Left x2
+Push Down x1
+Right x2
+Down x2
+Right x8
+Down x4
+Left x15
+Up x2
+Right x6
+Up x2
+Right x1
+Up x2
+Left x2
+Down x1
+Push Down x1
+Right x2
+Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x6
+Up x1
+Push Left x1
+Down x1
+Right x9
+Down x2
+Left x15
+Up x2
+Right x4
+Push Up x1
+Right x11
+Down x2
+Left x15
+Up x2
+Right x2
+Up x1
+Right x1
+Up x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Up x1
+Right x2
+Up x2
+Left x1
+Up x1
+Down x1
+Right x1
+Down x2
+Left x1
+Push Down x1
+Right x1
+Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x5
+Up x2
+Right x1
+Push Down x1
+Right x9
+Down x4
+Left x15
+Up x2
+Right x5
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x5
+Up x2
+Left x4
+Push Down x1
+Right x4
+Down x3
+Left x3
+Up x1
+Push Left x1
+Right x3
+Up x2
+Left x4
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x5
+Up x2
+Left x4
+Push Left x1
+Right x4
+Down x2
+Left x15
+Up x2
+Right x5
+Up x1
+Right x1
+Up x1
+Right x3
+Down x1
+Push Down x1
+Right x6
+Down x3
+Left x5
+Up x1
+Push Left x1
+Right x5
+Up x2
+Left x6
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x7
+Up x2
+Left x6
+Push Left x1
+Right x6
+Down x2
+Left x15
+Up x2
+Right x3
+Up x1
+Right x1
+Up x1
+Right x3
+Up x2
+Left x1
+Up x2
+Down x1
+Right x1
+Down x3
+Left x1
+Down x3
+Right x2
+Up x1
+Push Left x1
+Right x1
+Left x2
+Push Left x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x4
+Up x1
+Right x2
+Up x1
+Right x1
+Up x2
+Left x1
+Up x2
+Down x1
+Right x1
+Down x3
+Left x1
+Down x2
+Right x2
+Down x2
+Left x8
+Up x2
+Right x4
+Push Right x1
+Right x1
+Down x2
+Left x5
+Up x2
+Right x2
+Up x1
+Right x1
+Up x1
+Right x3
+Down x1
+Push Down x1
+Down x1
+Right x9
+Down x2
+Left x15
+Up x2
+Right x6
+Up x2
+Right x1
+Up x2
+Left x1
+Up x2
+Down x1
+Right x1
+Down x2
+Left x2
+Down x1
+Left x1
+Down x3
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x9
+Up x2
+Left x9
+Down x2
+Left x6
+Up x2
+Right x4
+Up x1
+Right x1
+Up x1
+Right x2
+Push Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x5
+Down x3
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x2
+Up x2
+Left x1
+Push Left x1
+Right x1
+Down x2
+Left x15
+Up x2
+Right x6
+Push Right x1
+Right x4
+Down x1
+Right x5
+Up x2
+Left x3
+Push Down x1
+Right x3
+Down x3
+Left x4
+Up x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x2
+Up x2
+Left x1
+Up x1
+Left x2
+Down x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x2
+Left x1
+Up x1
+Left x3
+Down x1
+Left x1
+Down x1
+Push Right x1
+Right x2
+Down x1
+Right x3
+Up x2
+Left x1
+Push Down x1
+Right x1
+Down x3
+Left x2
+Up x1
+Push Up x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x2
+Up x2
+Left x1
+Push Left x1
+Right x1
+Down x2
+Left x15
+Up x2
+Right x11
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Up x1
+Right x2
+Down x2
+Left x1
+Push Up x1
+Right x1
+Up x2
+Push Left x1
+Left x1
+Push Left x1
+Right x1
+Down x3
+Left x15
+Up x2
+Right x11
+Up x2
+Right x1
+Push Down x1
+Down x1
+Push Down x1
+Right x3
+Down x3
+Left x2
+Up x1
+Push Left x1
+Right x2
+Up x2
+Left x3
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x4
+Up x2
+Left x3
+Push Left x1
+Right x3
+Down x2
+Left x15
+Up x2
+Right x9
+Up x1
+Right x1
+Push Down x1
+Right x5
+Down x3
+Left x4
+Up x1
+Push Left x1
+Right x4
+Up x2
+Left x5
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x6
+Up x2
+Left x5
+Push Left x1
+Left x1
+Push Left x1
+Right x6
+Down x2
+Left x15
+Up x2
+Right x6
+Up x1
+Right x1
+Push Down x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x5
+Up x2
+Right x1
+Up x1
+Right x1
+Up x2
+Left x1
+Up x1
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x1
+Push Up x1
+Right x1
+Up x2
+Push Left x1
+Right x7
+Down x2
+Left x15
+Up x2
+Right x5
+Up x1
+Right x2
+Down x1
+Push Left x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x4
+Up x1
+Right x2
+Up x1
+Right x1
+Up x2
+Left x1
+Up x2
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x8
+Up x2
+Right x4
+Push Right x1
+Right x1
+Down x1
+Right x1
+Push Up x1
+Right x9
+Up x2
+Left x6
+Up x1
+Left x2
+Down x4
+Left x7
+Up x2
+Right x5
+Up x1
+Push Right x1
+Right x1
+Down x1
+Right x9
+Down x2
+Left x15
+Up x2
+Right x3
+Up x2
+Left x3
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x5
+Down x2
+Right x1
+Push Up x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x6
+Up x1
+Right x1
+Push Up x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x5
+Up x2
+Right x1
+Up x2
+Right x1
+Push Down x1
+Down x1
+Left x2
+Down x1
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x5
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Right x4
+Down x1
+Right x3
+Down x3
+Left x15
+Up x2
+Right x6
+Up x1
+Push Up x1
+Right x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x4
+Up x2
+Right x1
+Up x2
+Right x2
+Down x1
+Push Left x1
+Down x1
+Right x5
+Down x1
+Right x3
+Down x3
+Left x15
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Up x2
+Left x2
+Push Down x1
+Right x2
+Down x2
+Right x5
+Down x1
+Right x2
+Up x1
+Push Left x1
+Right x1
+Down x4
+Left x15
+Up x2
+Right x12
+Up x2
+Left x5
+Up x1
+Left x2
+Push Down x1
+Right x2
+Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x6
+Up x1
+Push Left x1
+Right x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x4
+Push Up x1
+Right x11
+Down x2
+Left x15
+Up x2
+Right x2
+Up x1
+Right x1
+Up x1
+Push Right x1
+Left x3
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x3
+Down x1
+Right x3
+Up x2
+Left x2
+Push Down x1
+Right x2
+Down x2
+Left x1
+Push Left x1
+Right x1
+Down x1
+Right x1
+Down x2
+Left x8
+Up x2
+Right x4
+Push Up x1
+Right x3
+Up x2
+Right x2
+Left x2
+Up x1
+Left x2
+Down x1
+Push Left x1
+Down x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x2
+Up x2
+Left x2
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Right x1
+Down x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x7
+Up x3
+Left x2
+Down x1
+Left x2
+Push Left x1
+Right x2
+Down x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x5
+Right x1
+Push Down x1
+Down x1
+Right x4
+Down x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x3
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x13
+Up x2
+Left x8
+Up x1
+Left x2
+Down x1
+Left x2
+Push Down x1
+Right x2
+Down x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x2
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x11
+Up x2
+Left x6
+Up x1
+Left x2
+Down x1
+Left x2
+Push Down x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x3
+Up x2
+Left x3
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x4
+Down x1
+Right x2
+Down x1
+Right x1
+Down x2
+Left x4
+Up x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x9
+Up x2
+Left x7
+Down x1
+Push Left x1
+Right x7
+Up x2
+Left x6
+Up x1
+Left x2
+Down x2
+Left x2
+Down x2
+Left x5
+Up x2
+Right x3
+Up x1
+Right x1
+Up x1
+Right x1
+Up x1
+Right x1
+Push Down x1
+Right x1
+Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Down x2
+Right x1
+Down x2
+Left x3
+Up x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x2
+Up x2
+Left x1
+Push Left x1
+Right x1
+Down x2
+Left x15
+Up x2
+Right x5
+Up x1
+Right x2
+Down x1
+Right x4
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x1
+Push Up x1
+Right x1
+Up x2
+Push Left x1
+Down x3
+Left x15
+Up x2
+Right x5
+Up x1
+Right x2
+Down x1
+Right x6
+Push Up x1
+Right x2
+Down x2
+Left x15
+Up x2
+Right x5
+Up x1
+Right x2
+Down x1
+Right x4
+Up x1
+Right x1
+Up x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Right x6
+Down x4
+Left x15
+Up x2
+Right x5
+Up x1
+Right x2
+Push Up x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x5
+Up x2
+Right x1
+Up x2
+Right x1
+Push Down x1
+Down x1
+Push Down x1
+Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Push Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x5
+Up x1
+Right x2
+Push Down x1
+Down x1
+Right x8
+Down x2
+Left x9
+Up x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x7
+Up x2
+Left x6
+Up x2
+Left x2
+Down x2
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x5
+Up x2
+Left x4
+Push Down x1
+Right x4
+Down x3
+Left x3
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x5
+Up x2
+Left x4
+Push Left x1
+Right x4
+Down x2
+Left x5
+Up x1
+Left x1
+Push Up x1
+Right x6
+Up x2
+Left x5
+Up x1
+Left x1
+Push Down x1
+Left x3
+Down x1
+Left x1
+Down x1
+Push Right x1
+Right x2
+Down x1
+Right x8
+Up x2
+Left x6
+Push Down x1
+Right x6
+Down x3
+Left x15
+Up x2
+Right x7
+Up x2
+Left x7
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Down x3
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x2
+Up x2
+Left x1
+Push Left x1
+Right x1
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Right x5
+Down x1
+Push Down x1
+Right x3
+Down x3
+Left x2
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x4
+Up x2
+Left x3
+Push Left x1
+Right x3
+Down x2
+Left x15
+Up x2
+Right x7
+Push Right x1
+Right x1
+Down x1
+Right x7
+Up x2
+Left x5
+Push Down x1
+Right x5
+Down x3
+Left x6
+Up x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x2
+Up x2
+Left x1
+Push Left x1
+Right x1
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Right x5
+Down x1
+Push Down x1
+Right x3
+Down x3
+Left x2
+Up x1
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x4
+Up x2
+Left x3
+Up x1
+Left x2
+Down x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x1
+Push Up x1
+Right x1
+Up x2
+Push Left x1
+Down x3
+Left x15
+Up x2
+Right x7
+Up x2
+Right x6
+Push Down x1
+Left x6
+Down x2
+Right x1
+Push Right x1
+Right x3
+Down x1
+Right x4
+Up x2
+Left x2
+Push Down x1
+Right x2
+Down x3
+Left x3
+Up x1
+Push Right x1
+Right x1
+Down x1
+Right x1
+Push Up x1
+Up x1
+Push Up x1
+Right x1
+Up x2
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x2
+Down x2
+Left x15
+Up x2
+Right x11
+Up x1
+Right x1
+Up x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Left x1
+Push Left x1
+Right x1
+Down x4
+Left x3
+Up x1
+Push Up x1
+Right x3
+Up x2
+Left x2
+Push Left x1
+Up x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Right x6
+Down x4
+Left x15
+Up x2
+Right x7
+Up x1
+Push Up x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x5
+Up x2
+Right x1
+Up x2
+Right x1
+Push Down x1
+Down x1
+Push Down x1
+Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Push Down x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x6
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Up x1
+Push Left x1
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Right x6
+Down x1
+Push Down x1
+Right x2
+Down x2
+Left x1
+Push Left x1
+Right x1
+Up x2
+Left x2
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x3
+Up x2
+Left x2
+Push Left x1
+Right x2
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Right x4
+Down x1
+Push Down x1
+Right x4
+Down x3
+Left x3
+Up x1
+Push Left x1
+Right x3
+Up x2
+Left x4
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x5
+Up x2
+Left x4
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Left x1
+Push Left x1
+Right x7
+Down x2
+Left x15
+Up x2
+Right x5
+Up x1
+Right x2
+Up x2
+Left x2
+Up x2
+Right x1
+Up x1
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x2
+Up x1
+Push Up x1
+Right x9
+Up x2
+Left x5
+Up x1
+Left x3
+Down x4
+Left x7
+Up x2
+Right x5
+Up x2
+Left x5
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Down x1
+Push Left x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x6
+Up x1
+Push Left x1
+Right x1
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x4
+Push Up x1
+Right x11
+Down x2
+Left x15
+Up x2
+Right x2
+Up x1
+Right x1
+Up x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x2
+Up x2
+Left x2
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x4
+Down x1
+Right x2
+Up x1
+Push Left x1
+Right x8
+Down x4
+Left x15
+Up x2
+Right x1
+Up x2
+Left x1
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x3
+Down x1
+Right x2
+Down x1
+Right x3
+Left x3
+Up x1
+Left x1
+Push Up x1
+Right x2
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x3
+Up x2
+Left x3
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x6
+Up x2
+Left x2
+Push Down x1
+Down x1
+Push Down x1
+Down x1
+Push Down x1
+Right x10
+Down x4
+Left x15
+Up x2
+Right x4
+Up x1
+Right x2
+Down x1
+Push Left x1
+Right x9
+Down x2
+Left x15
+Up x2
+Right x3
+Up x1
+Right x2
+Up x1
+Right x2
+Up x2
+Left x1
+Up x2
+Down x1
+Right x1
+Down x5
+Right x1
+Down x2
+Left x8
+Up x2
+Right x3
+Up x1
+Right x2
+Down x1
+Push Left x1
+Right x10
+Down x2
+Left x15
+Up x2
+Right x2
+Up x1
+Right x5
+Up x2
+Left x2
+Up x2
+Right x1
+Up x1
+Down x1
+Right x1
+Down x3
+Left x3
+Down x1
+Left x1
+Push Down x1
+Right x4
+Down x1
+Right x8
+Down x2
+Left x15
+Up x2
+Right x7
+Up x2
+Left x7
+Up x2
+Left x1
+Up x2
+Down x2
+Right x1
+Down x1
+Right x1
+Down x1
+Right x1
+Left x1
+Down x2
+Right x1
+Down x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x7
+Up x2
+Left x7
+Down x1
+Left x1
+Down x1
+Left x7
+Up x2
+Right x6
+Up x1
+Right x1
+Up x1
+Right x2
+Push Down x1
+Right x6
+Down x4
+Left x5
+Up x1
+Push Left x1
+Left x1
+Push Left x1
+Right x6
+Up x2
+Left x6
+Up x1
+Left x2
+Down x2
+Left x1
+Down x2
+Right x1
+Push Up x1
+Right x8
+Up x2
+Left x5
+Up x1
+Left x1
+Up x1
+Left x2
+Down x1
+Left x1
+Down x2
+Left x1
+Down x1
+Left x5
+Up x2
+Right x4
+Up x2
+Right x1
+Up x1
+Right x1
+Up x3
+Down x1
+Right x1
+Down x1
+Explode Right x1
+Down x3
+Push Down x1
+Down x1
+Right x1
+Down x2
+Left x1
+Push Up x1
+Right x1
+Up x2
+Push Left x1
+Down x2
+Left x8
+Up x2
+Right x5
+Up x1
+Right x1
+Push Down x1
+Right x1
+Down x2
+Push Left x1
+Down x1
+Left x2
+Push Up x1
+Right x3
+Up x2
+Left x2
+Push Left x1
+Right x2
+Down x2
+Left x8
+Up x2
+Right x3
+Up x1
+Right x1
+Push Down x1
+Right x3
+Down x1
+Right x1
+Down x2
+Left x3
+Up x1
+Push Left x1
+Right x2
+Up x2
+Left x3
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x5
+Up x2
+Left x4
+Push Left x1
+Right x4
+Down x2
+Left x8
+Up x2
+Right x1
+Up x1
+Right x1
+Push Down x1
+Right x5
+Down x1
+Right x1
+Down x2
+Left x5
+Up x1
+Push Left x1
+Right x4
+Up x2
+Left x5
+Down x1
+Left x2
+Down x2
+Right x1
+Push Up x1
+Right x7
+Up x2
+Left x6
+Up x1
+Left x2
+Up x3
+Left x1
+Up x1
+Down x1
+Right x1
+Down x1
+Right x1
+Down x2
+Push Down x1
+Down x1
+Left x1
+Down x2
+Right x1
+Push Up x1
+Up x1
+Push Up x1
+Right x6
+Up x2
+Left x5
+Up x1
+Left x2
+Down x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x2
+Down x1
+Right x1
+Down x1
+Left x2
+Right x2
+Left x9
+Up x2
+Right x7
+Push Up x1
+Right x1
+Down x2
+Left x8
+Up x2
+Right x5
+Up x1
+Right x1
+Up x1
+Down x1
+Right x1
+Down x1
+Right x1
+Push Right x1
+Down x2
+Left x8
+Up x2
+Right x6
+Up x2
+Left x1
+Up x2
+Right x9
+Explode All Silvers x1
+Right x1
+Up x2
+Left x2
+Down x1
+Left x1
+Down x1
+Left x5
+Down x1
+Left x2
+Up x2
+Right x1
+Up x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Push Right x1
+Right x1
+Down x1
+Right x1
+Push Up x1
+Down x1
+Left x8
+Down x1
+Left x2
+Up x2
+Right x1
+Up x1
+Right x1
+Up x2
+  292.455s
