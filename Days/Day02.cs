@@ -1,14 +1,11 @@
 ﻿using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using TypeParser;
 
 namespace AdventOfCode2023.Day02;
 
-[UsedImplicitly]
 public class Day02 : AdventOfCode<long,List<Game>>
 {
     public override List<Game> Parse(string input) => TypeCompiler.ParseLines<Game>(input);

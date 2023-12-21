@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
+
 
 namespace TypeParser
 {
@@ -16,7 +16,6 @@ namespace TypeParser
         Optional
     }
 
-    [MeansImplicitUse]
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter)]
     public class Format : Attribute
     {
@@ -29,7 +28,6 @@ namespace TypeParser
 
         public Optional Optional { get; init; }
 
-        [RegexPattern]
         public string? Regex { get; init; }
 
         public string? Choices { get; init; }

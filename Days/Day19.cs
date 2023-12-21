@@ -1,10 +1,7 @@
 using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Formats.Asn1;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -21,7 +18,7 @@ public record Part(long X, long M, long A, long S);
 
 public record DigInstruction(Vector Direction, long Length, string Color);
 
-[UsedImplicitly]
+
 public class Day19 : AdventOfCode<long, Day19Data>
 {
     public override Day19Data Parse(string input)

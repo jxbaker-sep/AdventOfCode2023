@@ -1,10 +1,8 @@
 using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
-using TypeParser;
 
 namespace AdventOfCode2023.Day18;
 
@@ -12,7 +10,7 @@ using Day18Data = IReadOnlyList<DigInstruction>;
 
 public record DigInstruction(Vector Direction, long Length, string Color);
 
-[UsedImplicitly]
+
 public class Day18 : AdventOfCode<long, Day18Data>
 {
     public override Day18Data Parse(string input) => input.Lines().Select(line => {

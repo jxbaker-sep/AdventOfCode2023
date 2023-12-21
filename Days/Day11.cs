@@ -1,5 +1,5 @@
 ﻿using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
+
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +7,7 @@ namespace AdventOfCode2023.Day11;
 
 using Galaxies = IReadOnlySet<Position>;
 
-[UsedImplicitly]
+
 public class Day11 : AdventOfCode<long, Galaxies>
 {
     public override Galaxies Parse(string input) 

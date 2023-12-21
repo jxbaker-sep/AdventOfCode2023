@@ -1,15 +1,14 @@
 using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace AdventOfCode2023.Day15;
 
 using Day15Data = IReadOnlyList<string>;
 
-[UsedImplicitly]
+
 public class Day15 : AdventOfCode<long, Day15Data>
 {
     public override Day15Data Parse(string input) => input.Lines().Single().Split(",");

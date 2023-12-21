@@ -367,6 +367,22 @@ public static class EnumerableExtensions
         return self.Rows().SelectMany(y => self.Cols().Select(x => new Position(y, x)));
     }
 
+    public static int Rows<T>(this IReadOnlyList<IReadOnlyList<T>> self)
+    {
+        return self.Count;
+    }
+
+    public static int Cols<T>(this IReadOnlyList<IReadOnlyList<T>> self)
+    {
+        return self[0].Count;
+    }
+
+    public static IEnumerable<Position> Grid<T>(this IReadOnlyList<IReadOnlyList<T>> self)
+    {
+        return Enumerable.Range(0, self.Rows())
+            .SelectMany(row => Enumerable.Range(0, self.Cols()).Select(col => new Position(row, col)));
+    }
+
     public static List<List<T>> RotateRight<T>(this IReadOnlyList<IReadOnlyList<T>> self)
     {
         var result = new List<List<T>>();

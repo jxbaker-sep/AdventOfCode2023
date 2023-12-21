@@ -1,12 +1,10 @@
 ﻿using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AdventOfCode2023.Day03;
 
-[UsedImplicitly]
 public class Day03 : AdventOfCode<long, Data>
 {
     public override Data Parse(string input) 

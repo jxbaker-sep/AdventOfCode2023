@@ -1,5 +1,4 @@
 ﻿using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,6 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2023.Day01;
 
-[UsedImplicitly]
 public class Day01 : AdventOfCode<long,List<string>>
 {
     public override List<string> Parse(string input) => 

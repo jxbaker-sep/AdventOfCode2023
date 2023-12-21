@@ -1,16 +1,11 @@
-﻿using AdventOfCode2023.Day04;
-using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
-using System;
+﻿using AdventOfCode2023.Utils;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Text.RegularExpressions;
 using TypeParser;
 
 namespace AdventOfCode2023.Day09;
 
-[UsedImplicitly]
+
 public class Day09 : AdventOfCode<long,IReadOnlyList<IReadOnlyList<long>>>
 {
     public override IReadOnlyList<IReadOnlyList<long>> Parse(string input) =>

@@ -1,15 +1,11 @@
-﻿using AdventOfCode2023.Day04;
-using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
+﻿using AdventOfCode2023.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using TypeParser;
 
 namespace AdventOfCode2023.Day05;
 
-[UsedImplicitly]
 public class Day05 : AdventOfCode<long,Day05Struct>
 {
     public override Day05Struct Parse(string input) {

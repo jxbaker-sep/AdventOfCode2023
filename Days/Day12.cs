@@ -1,16 +1,13 @@
 using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
-using System.IO.Compression;
 using System.Linq;
 
 namespace AdventOfCode2023.Day12;
 
 public record Day12Record(string Template, List<int> Runs);
 
-[UsedImplicitly]
+
 public class Day12 : AdventOfCode<long, IReadOnlyList<Day12Record>>
 {
     public override IReadOnlyList<Day12Record> Parse(string input) =>

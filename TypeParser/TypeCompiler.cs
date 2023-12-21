@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
+
 using TypeParser.Matchers;
 
 namespace TypeParser
@@ -31,12 +31,12 @@ namespace TypeParser
         }
     }
 
-    [UsedImplicitly]
+    
     public static class TypeCompiler
     {
         private static Dictionary<Type, object> Memoise = new();
 
-        [UsedImplicitly]
+        
         public static ITypeParser<T> Compile<T>(Format? format = null)
         {
             if (Memoise.TryGetValue(typeof(T), out var found))
@@ -68,7 +68,7 @@ namespace TypeParser
             throw new ApplicationException("Failed to match.");
         }
 
-        [UsedImplicitly]
+        
         public static List<T> ParseLines<T>(string input, Format? format = null)
         {
             var compiled = Compile<T>(format);
@@ -80,7 +80,7 @@ namespace TypeParser
             }).ToList();
         }
 
-        [UsedImplicitly]
+        
         public static T? ParseOrDefault<T>(string input)
         {
             try

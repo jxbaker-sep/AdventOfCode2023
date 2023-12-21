@@ -1,5 +1,5 @@
 ﻿using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace AdventOfCode2023.Day10;
 using Pipes = IReadOnlyDictionary<Position, char>;
 public record Day10Data(Position Start, Pipes Pipes);
 
-[UsedImplicitly]
+
 public class Day10 : AdventOfCode<long, Day10Data>
 {
     public override Day10Data Parse(string input) 

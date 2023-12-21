@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using AdventOfCode2023.Utils;
-using JetBrains.Annotations;
+
 using TypeParser.Matchers;
 using TypeParser.UtilityClasses;
 
@@ -130,7 +130,7 @@ namespace TypeParser
         }
 
         
-        [UsedImplicitly]
+        
 #pragma warning disable IDE0051
         private static Dictionary<string, int> GetEnumMap<T>()
         {
