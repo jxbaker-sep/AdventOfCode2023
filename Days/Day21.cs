@@ -1,5 +1,6 @@
 using AdventOfCode2023.Day04;
 using AdventOfCode2023.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -28,7 +29,10 @@ public class Day21 : AdventOfCode<long, Day21Data>
       var MaxSteps = TestCase.Arg0;
       var grid = world.Grid;
       var open = new[]{(P: world.Start, Steps: 0)}.ToQueue();
-      var closed = new[]{open.First()}.ToHashSet();
+      var closed = new Dictionary<Position, long>
+      {
+          [world.Start] = 0
+      };
       while (open.TryDequeue(out var current))
       {
         var (p, steps) = current;
@@ -38,19 +42,24 @@ public class Day21 : AdventOfCode<long, Day21Data>
           if (grid.TryAt(p2, out var next) && next == Garden)
           {
             var temp = (p2, steps + 1);
-            if (closed.Add(temp)) open.Enqueue(temp);
+            if (!closed.ContainsKey(p2)) {
+              closed.Add(p2, steps + 1);
+              open.Enqueue(temp);
+            }
           }
         }
       }
 
-      return closed.Count(it => it.Steps == MaxSteps);
+      return closed.Count(it => (it.Value % 2) == 0 );
     }
 
+    public const long Even = 0;
+    public const long Odd = 1;
 
-    // [TestCase(Input.Sample, 16, Arg0 = 6)]
-    // [TestCase(Input.Sample, 50, Arg0 = 10)]
-    // [TestCase(Input.Sample, 1594, Arg0 = 50)]
-    // [TestCase(Input.Sample, 6536, Arg0 = 100)]
+    [TestCase(Input.Sample, 16, Arg0 = 6)]
+    [TestCase(Input.Sample, 50, Arg0 = 10)]
+    [TestCase(Input.Sample, 1594, Arg0 = 50)]
+    [TestCase(Input.Sample, 6536, Arg0 = 100)]
     // [TestCase(Input.Sample, 167004, Arg0 = 500)]
     // [TestCase(Input.Sample, 668697, Arg0 = 1000)]
     // [TestCase(Input.Sample, 16733044, Arg0 = 5000)]
@@ -60,7 +69,10 @@ public class Day21 : AdventOfCode<long, Day21Data>
       var MaxSteps = TestCase.Arg0;
       var grid = world.Grid;
       var open = new[]{(P: world.Start, Steps: 0)}.ToQueue();
-      var closed = new[]{open.First()}.ToHashSet();
+      var closed = new Dictionary<Position, long>
+      {
+          [world.Start] = Even
+      };
       while (open.TryDequeue(out var current))
       {
         var (p, steps) = current;
@@ -69,15 +81,24 @@ public class Day21 : AdventOfCode<long, Day21Data>
         {
           var row = LMath.MathMod(p2.Y, grid.Rows());
           var col = LMath.MathMod(p2.X, grid.Cols());
-          if (grid.TryAt(new Position(row, col), out var next) && next == Garden)
+          var p2Mod = new Position(row, col);
+          if (grid.TryAt(p2Mod, out var next) && next == Garden)
           {
-            var temp = (p2, steps + 1);
-            if (closed.Add(temp)) open.Enqueue(temp);
+            var evenOdd = ((steps + 1) % 2) == 0 ? Even : Odd;
+            if (closed.TryGetValue(p2, out var temp))
+            {
+              if (evenOdd == temp) continue;
+              throw new ApplicationException();
+            }
+            else {
+              closed.Add(p2, evenOdd);
+              open.Enqueue((p2, steps + 1));
+            }
           }
         }
       }
 
-      return closed.Count(it => it.Steps == MaxSteps);
+      return closed.Values.Count(it => it == Even );
     }
 
 }

@@ -4,48 +4,8 @@ using System.Linq;
 
 namespace AdventOfCode2023.Utils
 {
-    public class Position3d
+    public record Position3d(long X, long Y, long Z)
     {
-        public static Position3d Zero = new(0, 0, 0);
-        public long X { get; }
-        public long Y { get; }
-        public long Z { get; }
-
-        public Position3d(long y, long x, long z = 0)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-        }
-
-        public Position3d(IEnumerable<long> input)
-        {
-            var list = input.Take(3).ToList();
-            X = list.Skip(1).FirstOrDefault();
-            Y = list.Skip(0).FirstOrDefault();
-            Z = list.Skip(2).FirstOrDefault();
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(X, Y, Z);
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return obj is Position3d other && other.X == X && other.Y == Y && other.Z == Z;
-        }
-
-        public static bool operator ==(Position3d p, Position3d p2)
-        {
-            return p.Equals(p2);
-        }
-
-        public static bool operator !=(Position3d p, Position3d p2)
-        {
-            return !(p == p2);
-        }
-
         public static Position3d operator -(Position3d p, Position3d p2)
         {
             return new Position3d(p.Y - p2.Y, p.X - p2.X, p.Z - p2.Z);
