@@ -22,7 +22,7 @@ public class Day23 : AdventOfCode<long, Grid>
     const char SlopeWest='<';
 
     [TestCase(Input.Sample, 94)]
-    // [TestCase(Input.Data, 0)]
+    // [TestCase(Input.Data, 2386)]
     public override long Part1(Grid grid)
     {
       return Walk(grid, true).Max();
