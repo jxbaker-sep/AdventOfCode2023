@@ -30,7 +30,7 @@ public class Day23 : AdventOfCode<long, Grid>
     }
 
     [TestCase(Input.Sample, 154)]
-    // [TestCase(Input.Data, 0)]
+    [TestCase(Input.Data, 0)] // 5970 too low
     public override long Part2(Grid grid)
     {
       var threads = new HashSet<Thread>();
@@ -44,31 +44,37 @@ public class Day23 : AdventOfCode<long, Grid>
     }
 
     public record Chain(IReadOnlyList<Position> Points, long Length);
+
+    public Dictionary<string, Chain?> Memoise = new();
+
     Chain? ChainThreads(Chain chain, HashSet<Thread> threads, Position goal)
     {
-      var tails = threads.Where(t => t.P1 == chain.Points[^1] && !chain.Points.Contains(t.P2))
-        .ToList();
-      if (tails.Count == 0) {
-        return null;
-      }
+      var key = CreateKey(chain);
+      if (Memoise.TryGetValue(key, out var found)) return found;
+
+      var tails = threads.Where(t => t.P1 == chain.Points[^1] && !chain.Points.Contains(t.P2)).ToList();
       Chain? max = null;
       foreach(var tail in tails)
       {
+        var tailChain = new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length);
         if (tail.P2 == goal)
         {
-          if (chain.Length + tail.Length > (max?.Length ?? 0))
-            max = new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length);
-          continue;
+          if (max is null) max = tailChain;
+          else if (tailChain.Length > max.Length) max = tailChain;
         }
-        var x = ChainThreads(new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length),
-          threads, goal);
-        if (x is {} )
+        else if (ChainThreads(tailChain,threads, goal) is {} x)
         {
           if (max is null) max = x;
           else if (x.Length > max.Length) max = x;
         }
       }
+      Memoise[key] = max;
       return max;
+    }
+
+    private string CreateKey(Chain chain)
+    {
+        return chain.Points.OrderBy(p=>p.Y).ThenBy(p=>p.X).Select(p => p.ToString()).Join(";") + chain.Points.Last().ToString();
     }
 
     private void CreateThreads(Position start, IEnumerable<Position> visited2, Grid grid, HashSet<Thread> threads)
