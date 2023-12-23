@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Microsoft.VisualBasic;
 
 namespace AdventOfCode2023.Utils
 {
@@ -9,6 +11,7 @@ namespace AdventOfCode2023.Utils
         public static readonly Vector East = new(0, 1);
         public static readonly Vector South = new(1, 0);
         public static readonly Vector West = new(0, -1);
+        public static readonly List<Vector> Cardinal = [North, East, South, West];
 
         public long dX { get; }
         public long dY { get; }
