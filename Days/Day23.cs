@@ -39,28 +39,36 @@ public class Day23 : AdventOfCode<long, Grid>
       CreateThreads(start, new HashSet<Position>{start}, grid, threads);
       var xstart = threads.Single(it => it.P1 == start);
       var xgoal = threads.Single(it => it.P2 == goal);
-      return ChainThreads(new Chain([xstart.P1, xstart.P2], xstart.Length), threads, xgoal.P1)
-        .Max(it => it.Length) + xgoal.Length;
+      return ChainThreads(new Chain([xstart.P1, xstart.P2], xstart.Length), threads, xgoal.P1)!.Length
+        + xgoal.Length;
     }
 
     public record Chain(IReadOnlyList<Position> Points, long Length);
-    IEnumerable<Chain> ChainThreads(Chain chain, HashSet<Thread> threads, Position goal)
+    Chain? ChainThreads(Chain chain, HashSet<Thread> threads, Position goal)
     {
       var tails = threads.Where(t => t.P1 == chain.Points[^1] && !chain.Points.Contains(t.P2))
         .ToList();
       if (tails.Count == 0) {
-        yield break;
+        return null;
       }
+      Chain? max = null;
       foreach(var tail in tails)
       {
         if (tail.P2 == goal)
         {
-          yield return new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length);
+          if (chain.Length + tail.Length > (max?.Length ?? 0))
+            max = new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length);
           continue;
         }
-        foreach(var next in ChainThreads(new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length),
-          threads, goal)) yield return next;
+        var x = ChainThreads(new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length),
+          threads, goal);
+        if (x is {} )
+        {
+          if (max is null) max = x;
+          else if (x.Length > max.Length) max = x;
+        }
       }
+      return max;
     }
 
     private void CreateThreads(Position start, IEnumerable<Position> visited2, Grid grid, HashSet<Thread> threads)
