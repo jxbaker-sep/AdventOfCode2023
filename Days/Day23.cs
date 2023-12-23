@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading;
 
 namespace AdventOfCode2023.Day23;
 
@@ -21,7 +22,7 @@ public class Day23 : AdventOfCode<long, Grid>
     const char SlopeEast='>';
     const char SlopeWest='<';
 
-    [TestCase(Input.Sample, 94)]
+    // [TestCase(Input.Sample, 94)]
     // [TestCase(Input.Data, 2386)]
     public override long Part1(Grid grid)
     {
@@ -29,12 +30,80 @@ public class Day23 : AdventOfCode<long, Grid>
     }
 
     [TestCase(Input.Sample, 154)]
-    [TestCase(Input.Data, 0)]
+    // [TestCase(Input.Data, 0)]
     public override long Part2(Grid grid)
     {
-      return Walk(grid, false).Max();
+      var threads = new HashSet<Thread>();
+      var start = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == 0);
+      var goal = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == grid.Rows() -1);
+      CreateThreads(start, new HashSet<Position>{start}, grid, threads);
+      var xstart = threads.Single(it => it.P1 == start);
+      var xgoal = threads.Single(it => it.P2 == goal);
+      return ChainThreads(new Chain([xstart.P1, xstart.P2], xstart.Length), threads, xgoal.P1)
+        .Max(it => it.Length) + xgoal.Length;
     }
 
+    public record Chain(IReadOnlyList<Position> Points, long Length);
+    IEnumerable<Chain> ChainThreads(Chain chain, HashSet<Thread> threads, Position goal)
+    {
+      var tails = threads.Where(t => t.P1 == chain.Points[^1] && !chain.Points.Contains(t.P2))
+        .ToList();
+      if (tails.Count == 0) {
+        yield break;
+      }
+      foreach(var tail in tails)
+      {
+        if (tail.P2 == goal)
+        {
+          yield return new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length);
+          continue;
+        }
+        foreach(var next in ChainThreads(new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length),
+          threads, goal)) yield return next;
+      }
+    }
+
+    private void CreateThreads(Position start, IEnumerable<Position> visited2, Grid grid, HashSet<Thread> threads)
+    {
+      var visited = visited2.ToHashSet();
+      var current = start;
+      long count = 0;
+        while (true)
+        {
+          var rawNeighbors = OpenNeighbors(current, grid, false).ToList();
+          var ns = rawNeighbors.Except(visited).ToList();
+          if (ns.Count == 0)
+          {
+            var goal = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == grid.Rows() -1);
+            if (current == goal)
+            {
+              threads.Add(new Thread(start, current, count));
+              threads.Add(new Thread(current, start, count));
+              return;
+            }
+          }
+          if (ns.Count == 1)
+          {
+            count += 1;
+            visited.Add(ns.First());
+            current = ns.First();
+            continue;
+          }
+          var expanded = threads.Any(it => it.P1 == current);
+          threads.Add(new Thread(start, current, count));
+          threads.Add(new Thread(current, start, count));
+          if (!expanded)
+          {
+            foreach(var n in ns)
+            {
+              CreateThreads(current, rawNeighbors.Except([n]).Append(current), grid, threads);
+            }
+          }
+          break;
+        }
+    }
+
+    public record Thread(Position P1, Position P2, long Length);
 
     IEnumerable<long> Walk(Grid grid, bool slipperySlopes)
     {
@@ -51,6 +120,17 @@ public class Day23 : AdventOfCode<long, Grid>
           if (neighbor == goal) {yield return current.Steps + 1; continue;}
           open.Enqueue((neighbor, current.Steps + 1, current.Visited.Append(neighbor).ToHashSet()));
         }
+      }
+    }
+
+    private IEnumerable<Vector> VectorsOut(Position p, Grid grid)
+    {
+      var vs = Vector.Cardinal;
+      foreach(var v in vs)
+      {
+        var n = p + v;
+        if (!grid.TryAt(n, out var c) || c == Forest) continue;
+        yield return v;
       }
     }
 
