@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading;
 
 namespace AdventOfCode2023.Day23;
 
@@ -30,99 +29,132 @@ public class Day23 : AdventOfCode<long, Grid>
     }
 
     [TestCase(Input.Sample, 154)]
-    [TestCase(Input.Data, 0)] // 5970 too low
+    // [TestCase(Input.Data, 0)] // 5970 too low
     public override long Part2(Grid grid)
     {
-      var threads = new HashSet<Thread>();
+      Memoise = new();
+      var segments = new HashSet<Segment>();
       var start = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == 0);
       var goal = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == grid.Rows() -1);
-      CreateThreads(start, new HashSet<Position>{start}, grid, threads);
-      var xstart = threads.Single(it => it.P1 == start);
-      var xgoal = threads.Single(it => it.P2 == goal);
-      return ChainThreads(new Chain([xstart.P1, xstart.P2], xstart.Length), threads, xgoal.P1)!.Length
-        + xgoal.Length;
+      CreateSegments(start, OpenNeighbors(start, grid, false).Single(), grid, segments, 1);
+      // var rc = grid.GridValues().Where(p => p.Value != Forest)
+      //   .Select(p => {
+      //     var x = OpenNeighbors(p.Position, grid, false).Count();
+      //     if (x > 2) Console.WriteLine($"{p}: {x}");
+      //     return x;
+      //   })
+      //   .Where(ns => ns > 2)
+      //   .Sum();
+      foreach(var segment in segments.OrderBy(it => it.P1).ThenBy(it => it.P2)) Console.WriteLine($"{segment.P1}, {segment.P2}, {segment.Length}");
+      var xstart = segments.Single(it => it.P1 == start);
+      var xgoal = segments.Single(it => it.P2 == goal);
+      var chain = FindLongestChain(new Chain([xstart.P1, xstart.P2], xstart.Length, [xstart]), segments, goal);
+
+      PrintChain(grid, chain);
+
+      foreach(var pt in chain.Points) Console.WriteLine($"{pt}");
+      var temp = chain.Segments.SelectMany(s => s.Positions).ToHashSet().Count();
+      Console.WriteLine(temp);
+      return chain!.Length;
     }
 
-    public record Chain(IReadOnlyList<Position> Points, long Length);
+    private void PrintChain(Grid grid, Chain chain)
+    {
+        var grid2 = grid.Select(it => it.ToList()).ToList();
+        foreach(var p in chain.Segments.SelectMany(it => it.Positions))
+        {
+          grid2.Set(p, '*');
+        }
+        grid2.PrintGrid();
+    }
+
+
+    public long Id = 0;
+    public record Chain(IReadOnlyList<Position> Points, long Length, IReadOnlyList<Segment> Segments);
 
     public Dictionary<string, Chain?> Memoise = new();
 
-    Chain? ChainThreads(Chain chain, HashSet<Thread> threads, Position goal)
+    Chain? FindLongestChain(Chain chain, HashSet<Segment> segments, Position goal)
     {
       var key = CreateKey(chain);
       if (Memoise.TryGetValue(key, out var found)) return found;
 
-      var tails = threads.Where(t => t.P1 == chain.Points[^1] && !chain.Points.Contains(t.P2)).ToList();
+      var tails = segments.Where(segment => segment.P1 == chain.Points[^1] && !chain.Points.Contains(segment.P2)).ToList();
       Chain? max = null;
       foreach(var tail in tails)
       {
-        var tailChain = new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length);
+        var chainPlusTail = new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length, chain.Segments.Append(tail).ToList());
         if (tail.P2 == goal)
         {
-          if (max is null) max = tailChain;
-          else if (tailChain.Length > max.Length) max = tailChain;
+          if (max is null) max = chainPlusTail;
+          else if (chainPlusTail.Length > max.Length) max = chainPlusTail;
         }
-        else if (ChainThreads(tailChain,threads, goal) is {} x)
+        else if (FindLongestChain(chainPlusTail,segments, goal) is {} x)
         {
           if (max is null) max = x;
           else if (x.Length > max.Length) max = x;
         }
       }
-      Memoise[key] = max;
+      Memoise.Add(key, max);
       return max;
     }
 
     private string CreateKey(Chain chain)
     {
-        return chain.Points.OrderBy(p=>p.Y).ThenBy(p=>p.X).Select(p => p.ToString()).Join(";") + chain.Points.Last().ToString();
+        return chain.Points.OrderBy(p=>p).Select(p => p.ToString()).Join(";") + "=>" + chain.Points.Last().ToString();
     }
 
-    private void CreateThreads(Position start, IEnumerable<Position> visited2, Grid grid, HashSet<Thread> threads)
+    private void CreateSegments(Position intersection, Position current, Grid grid, HashSet<Segment> segments, long extra = 0)
     {
-      var visited = visited2.ToHashSet();
-      var current = start;
-      long count = 0;
-        while (true)
+      var visited = new[]{intersection, current}.ToHashSet();
+      long count = 0 + extra;
+      while (true)
+      {
+        var rawNeighbors = OpenNeighbors(current, grid, false).ToList();
+        var ns = rawNeighbors.Except(visited).ToList();
+        if (ns.Count == 0)
         {
-          var rawNeighbors = OpenNeighbors(current, grid, false).ToList();
-          var ns = rawNeighbors.Except(visited).ToList();
-          if (ns.Count == 0)
-          {
-            var goal = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == grid.Rows() -1);
-            if (current == goal)
-            {
-              threads.Add(new Thread(start, current, count));
-              threads.Add(new Thread(current, start, count));
-              return;
-            }
-          }
-          if (ns.Count == 1)
+          var goal = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == grid.Rows() -1);
+          if (current == goal)
           {
             count += 1;
-            visited.Add(ns.First());
-            current = ns.First();
-            continue;
-          }
-          var expanded = threads.Any(it => it.P1 == current);
-          threads.Add(new Thread(start, current, count));
-          threads.Add(new Thread(current, start, count));
-          if (!expanded)
-          {
-            foreach(var n in ns)
-            {
-              CreateThreads(current, rawNeighbors.Except([n]).Append(current), grid, threads);
-            }
-          }
-          break;
+            segments.Add(new Segment(intersection, current, count, visited.ToList()));
+            segments.Add(new Segment(current, intersection, count, visited.ToList()));
+            return;
+          } 
+          throw new ApplicationException();
         }
+        if (ns.Count == 1)
+        {
+          count += 1;
+          visited.Add(ns.First());
+          current = ns.First();
+          continue;
+        }
+        count += 1;
+        var expanded = segments.Any(it => it.P1 == current);
+        if (!segments.Any(it => it.P1 == current && it.P2 == intersection))
+          segments.Add(new Segment(current, intersection, count, visited.ToList()));
+        if (!segments.Any(it => it.P1 == intersection && it.P2 == current))
+          segments.Add(new Segment(intersection, current, count, visited.ToList()));
+        if (!expanded)
+        {
+          foreach(var n in ns)
+          {
+            CreateSegments(current, n, grid, segments);
+          }
+        }
+        break;
+      }
     }
 
-    public record Thread(Position P1, Position P2, long Length);
+    public Dictionary<long, IReadOnlySet<Position>> SegmentIdToPositions = new();
+    public record Segment(Position P1, Position P2, long Length, IReadOnlyList<Position> Positions);
 
     IEnumerable<long> Walk(Grid grid, bool slipperySlopes)
     {
-      var start = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == 0);
-      var goal = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == grid.Rows() -1);
+      var start = grid.Grid().Single(p => grid.At(p) == Path && p.Y == 0);
+      var goal = grid.Grid().Single(p => grid.At(p) == Path && p.Y == grid.Rows() -1);
 
       var open = new Queue<(Position P, long Steps, IReadOnlySet<Position> Visited)>();
       open.Enqueue((start, 0, new[]{start}.ToHashSet()));

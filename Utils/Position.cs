@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AdventOfCode2023.Utils;
 
-public class Position
+public class Position: IComparable
 {
     public static Position Zero = new(0, 0);
     public long X { get; }
@@ -105,6 +105,16 @@ public class Position
     }
 
     public IEnumerable<Position> DiagonalAndOrthoganalNeighbors() => OrthoganalNeighbors().Concat(DiagonalNeighbors());
+
+    public int CompareTo(object? obj)
+    {
+        if (obj is Position other)
+        {
+            if (Y == other.Y) return X.CompareTo(other.X);
+            return Y.CompareTo(other.Y);
+        }
+        throw new ApplicationException();
+    }
 
     public Vector Unit => new Vector(Math.Sign(Y), Math.Sign(X));
 }

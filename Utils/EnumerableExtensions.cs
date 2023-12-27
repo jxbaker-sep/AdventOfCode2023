@@ -383,6 +383,12 @@ public static class EnumerableExtensions
             .SelectMany(row => Enumerable.Range(0, self.Cols()).Select(col => new Position(row, col)));
     }
 
+    public static IEnumerable<(Position Position, T Value)> GridValues<T>(this IReadOnlyList<IReadOnlyList<T>> self)
+    {
+        return self.SelectMany((row, rowIndex) => row.Select((c, colIndex) => (new Position(rowIndex, colIndex), c)));
+    }
+
+
     public static List<List<T>> RotateRight<T>(this IReadOnlyList<IReadOnlyList<T>> self)
     {
         var result = new List<List<T>>();
@@ -414,7 +420,7 @@ public static class EnumerableExtensions
         return result;
     }
 
-    private static void PrintGrid<T>(this IReadOnlyList<IReadOnlyList<T>> data)
+    public static void PrintGrid<T>(this IReadOnlyList<IReadOnlyList<T>> data)
     {
         for (var row = 0; row < data.Count; row++)
         {
