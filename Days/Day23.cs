@@ -36,7 +36,7 @@ public class Day23 : AdventOfCode<long, Grid>
       var segments = new HashSet<Segment>();
       var start = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == 0);
       var goal = grid.Grid().Where(p => grid.At(p) == Path).Single(p => p.Y == grid.Rows() -1);
-      CreateSegments(start, OpenNeighbors(start, grid, false).Single(), grid, segments, 1);
+      CreateSegments(start, OpenNeighbors(start, grid, false).Single(), grid, segments);
       // var rc = grid.GridValues().Where(p => p.Value != Forest)
       //   .Select(p => {
       //     var x = OpenNeighbors(p.Position, grid, false).Count();
@@ -104,7 +104,7 @@ public class Day23 : AdventOfCode<long, Grid>
         return chain.Points.OrderBy(p=>p).Select(p => p.ToString()).Join(";") + "=>" + chain.Points.Last().ToString();
     }
 
-    private void CreateSegments(Position intersection, Position current, Grid grid, HashSet<Segment> segments, long extra = 0)
+    private void CreateSegments(Position intersection, Position current, Grid grid, HashSet<Segment> segments)
     {
       var visited = new[]{intersection, current}.ToHashSet();
       long count = 0 + extra;
