@@ -21,7 +21,7 @@ public class Day23 : AdventOfCode<long, Grid>
     const char SlopeEast='>';
     const char SlopeWest='<';
 
-    // [TestCase(Input.Sample, 94)]
+    [TestCase(Input.Sample, 94)]
     // [TestCase(Input.Data, 2386)]
     public override long Part1(Grid grid)
     {
@@ -29,7 +29,7 @@ public class Day23 : AdventOfCode<long, Grid>
     }
 
     [TestCase(Input.Sample, 154)]
-    // [TestCase(Input.Data, 0)] // 5970 too low
+    // [TestCase(Input.Data, 6246)] 6246 correct, takes 101.6s to generate
     public override long Part2(Grid grid)
     {
       Memoise = new();
@@ -45,18 +45,28 @@ public class Day23 : AdventOfCode<long, Grid>
       //   })
       //   .Where(ns => ns > 2)
       //   .Sum();
-      foreach(var segment in segments.OrderBy(it => it.P1).ThenBy(it => it.P2)) Console.WriteLine($"{segment.P1}, {segment.P2}, {segment.Length}");
+      // foreach(var segment in segments.OrderBy(it => it.P1).ThenBy(it => it.P2)) Console.WriteLine($"{segment.P1}, {segment.P2}, {segment.Length}");
       var xstart = segments.Single(it => it.P1 == start);
       var xgoal = segments.Single(it => it.P2 == goal);
-      var chain = FindLongestChain(new Chain([xstart.P1, xstart.P2], xstart.Length, [xstart]), segments, goal);
+      var chain = FindLongestChain(new Chain([xstart.P1, xstart.P2], xstart.Length, [xstart]), segments, xgoal.P1);
 
-      PrintChain(grid, chain);
+      // PrintChain(grid, chain);
 
-      foreach(var pt in chain.Points) Console.WriteLine($"{pt}");
-      var temp = chain.Segments.SelectMany(s => s.Positions).ToHashSet().Count();
-      Console.WriteLine(temp);
-      return chain!.Length;
+      // foreach(var pt in chain!.Segments) Console.WriteLine($"{PositionNames[pt.P1]} => {PositionNames[pt.P2]} = {pt.Length}");
+      return chain!.Length + xgoal.Length;
     }
+
+    public Dictionary<Position, string> PositionNames = new(){
+      {new Position(0,1), "S"},
+      {new Position(5,3), "A"},
+      {new Position(13,5), "B"},
+      {new Position(19,13), "C"},
+      {new Position(19,19), "D"},
+      {new Position(22,21), "E"},
+      {new Position(11,21), "F"},
+      {new Position(13,13), "G"},
+      {new Position(3,11), "J"},
+    };
 
     private void PrintChain(Grid grid, Chain chain)
     {
@@ -77,37 +87,44 @@ public class Day23 : AdventOfCode<long, Grid>
     Chain? FindLongestChain(Chain chain, HashSet<Segment> segments, Position goal)
     {
       var key = CreateKey(chain);
-      if (Memoise.TryGetValue(key, out var found)) return found;
+      if (Memoise.TryGetValue(key, out var found)) {
+        return found;
+      }
 
       var tails = segments.Where(segment => segment.P1 == chain.Points[^1] && !chain.Points.Contains(segment.P2)).ToList();
       Chain? max = null;
+      Segment? foundTail = null;
       foreach(var tail in tails)
       {
         var chainPlusTail = new Chain(chain.Points.Append(tail.P2).ToList(), chain.Length + tail.Length, chain.Segments.Append(tail).ToList());
         if (tail.P2 == goal)
         {
-          if (max is null) max = chainPlusTail;
-          else if (chainPlusTail.Length > max.Length) max = chainPlusTail;
+          if (max is null) {max = chainPlusTail; foundTail = tail;}
+          else if (chainPlusTail.Length > max.Length) {max = chainPlusTail; foundTail = tail;}
         }
         else if (FindLongestChain(chainPlusTail,segments, goal) is {} x)
         {
-          if (max is null) max = x;
-          else if (x.Length > max.Length) max = x;
+          if (max is null) {max = x; foundTail = tail;}
+          else if (x.Length > max.Length) {max = x; foundTail = tail;}
         }
       }
+      // if (foundTail is {})
+      //   Console.WriteLine($"{chain.Segments.Count()}: {PositionNames[foundTail.P1]}=>{PositionNames[foundTail.P2]}:{foundTail.Length}");
+      // else
+      //   Console.WriteLine($"{chain.Segments.Count()}: {PositionNames[chain.Segments.Last().P2]}=>culled");
       Memoise.Add(key, max);
       return max;
     }
 
     private string CreateKey(Chain chain)
     {
-        return chain.Points.OrderBy(p=>p).Select(p => p.ToString()).Join(";") + "=>" + chain.Points.Last().ToString();
+        return chain.Points.Select(it=>it).Join(";");
     }
 
     private void CreateSegments(Position intersection, Position current, Grid grid, HashSet<Segment> segments)
     {
       var visited = new[]{intersection, current}.ToHashSet();
-      long count = 0 + extra;
+      long count = 0;
       while (true)
       {
         var rawNeighbors = OpenNeighbors(current, grid, false).ToList();

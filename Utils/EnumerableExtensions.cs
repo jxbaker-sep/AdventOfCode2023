@@ -137,6 +137,21 @@ public static class EnumerableExtensions
         }
     }
 
+    public static IEnumerable<(T First, T Second, T Third)> Triples<T>(this IEnumerable<T> self)
+    {
+        var l = self.ToList();
+        for (var first = 0; first < l.Count - 2; first++)
+        {
+            for (var second = first + 1; second < l.Count - 1; second++)
+            {
+                for (var third = second + 1; third < l.Count; third++)
+                {
+                    yield return (l[first], l[second], l[third]);
+                }
+            }
+        }
+    }
+
     public static List<T> ListFromItem<T>(T item)
     {
         return new List<T> { item };
@@ -459,5 +474,9 @@ public static class EnumerableExtensions
         return true;
     }
 
+    public static IEnumerable<string> TrimAll(this IEnumerable<string> input)
+    {
+        return input.Select(it => it.Trim());
+    }
 }
 

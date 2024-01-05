@@ -101,6 +101,7 @@ namespace AdventOfCode2023.Utils
         public object Expected { get; }
         public string Raw {get; set;} = "";
         public long Arg0 {get;set;} = 0;
+        public long Arg1 {get;set;} = 0;
         public long N { get; set; } = 0;
 
         public TestCaseAttribute(Input input, object expected)
