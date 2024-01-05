@@ -2,7 +2,6 @@ using AdventOfCode2023.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO;
 using System.Linq;
 
 namespace AdventOfCode2023.Day25;
@@ -29,27 +28,25 @@ public class Day25 : AdventOfCode<long, Connections>
     public override long Part1(Connections connections)
     {
       var map = CreateConnectionMap(connections);
-      Dictionary<Connection, long> counts = new();
+      Dictionary<Connection, long> counts = [];
       foreach(var node in map.Keys)
       {
-        FindShortestPaths(map, node, counts);
+          FindShortestPaths(map, node, counts);
       }
       var x = counts.OrderByDescending(it => it.Value).ToList();
 
       var connectionMap = CreateConnectionMap(connections.Except(x.Take(3).Select(it=>it.Key)));
       var groups = FindConnectedGroups(connectionMap);
       if (groups.Count != 2) throw new ApplicationException();
-      return groups[0].LongCount() * groups[1].LongCount();
+      return groups[0].Count * groups[1].Count;
     }
 
-    // [TestCase(Input.Sample, 154)]
-    // [TestCase(Input.Data, 6246)] 6246 correct, takes 101.6s to generate
     public override long Part2(Connections connections)
     {
       return 0;
     }
 
-    public void FindShortestPaths(ConnectionMap connections, string start, Dictionary<Connection, long> counts)
+    public static void FindShortestPaths(ConnectionMap connections, string start, Dictionary<Connection, long> counts)
     {
       var open = connections[start].Select(it => (End: it, Path: new[]{NormalizedConnection(start, it)}.ToList() as IReadOnlyList<Connection>)).ToQueue();
       var closed = new[]{start}.ToHashSet();
